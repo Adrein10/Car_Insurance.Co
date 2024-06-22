@@ -8,5 +8,9 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
+        public IActionResult policy()
+        {
+            return View();
+        }
     }
 }
