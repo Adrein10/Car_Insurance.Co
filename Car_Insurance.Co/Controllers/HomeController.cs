@@ -21,7 +21,10 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
-
+        public IActionResult Check()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
