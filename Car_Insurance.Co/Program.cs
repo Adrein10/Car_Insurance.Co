@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-builder.Services.AddDbContext<Car_Insurance_CoContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("dbcs")));
+//builder.Services.AddDbContext<Car_Insurance_CoContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("dbcs")));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSession(option =>
 {
