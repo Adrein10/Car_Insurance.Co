@@ -7,14 +7,12 @@ namespace Car_Insurance.Co.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly Car_Insurance_CoContext context;
-        private readonly IHttpContextAccessor accessor;
 
-        public HomeController(ILogger<HomeController> logger,Car_Insurance_CoContext context,IHttpContextAccessor accessor)
+
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            this.context = context;
-            this.accessor = accessor;
+
         }
 
         public IActionResult Index()
