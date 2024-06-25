@@ -465,4 +465,8 @@
     <None Include="wwwroot\Admin\pdf\mamunur.pdf" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Home\" />
+  </ItemGroup>
+
 </Project>
