@@ -1,4 +1,5 @@
-﻿using Car_Insurance.Co.Models;
+﻿using Car_Insurance.Co.Data;
+using Car_Insurance.Co.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,12 +8,14 @@ namespace Car_Insurance.Co.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly car_insuranceContext context;
+        private readonly IHttpContextAccessor accessor;
 
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,car_insuranceContext context,IHttpContextAccessor accessor)
         {
             _logger = logger;
-
+            this.context = context;
+            this.accessor = accessor;
         }
 
         public IActionResult Index()

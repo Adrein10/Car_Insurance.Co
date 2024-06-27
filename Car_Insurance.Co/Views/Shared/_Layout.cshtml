@@ -96,7 +96,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="about.html">About Us</a>
+                                                <a asp-controller="Home" asp-action="about">About Us</a>
                                             </li>
                                             <li class="dropdown">
                                                 <a href="#">Services</a>
@@ -210,11 +210,9 @@
                 <!-- End Mobile Menu -->
             </header>
             <!-- End Main Header -->
-    <div class="">
-        <main role="main" class="pb-3">
+
             @RenderBody()
-        </main>
-    </div>
+
 
             <!-- CTA Section -->
             <section class="cta-section">
@@ -326,7 +324,7 @@
                                         <div class="column col-lg-6 col-md-6 col-sm-12">
                                             <h3>Company</h3>
                                             <ul class="list-links">
-                                                <li><a href="#">About us</a></li>
+                                                <li><a asp-controller="Home" asp-action="about" >About us</a></li>
                                                 <li><a href="#">our team</a></li>
                                                 <li><a href="#">Services</a></li>
                                                 <li><a href="#">insurance</a></li>
