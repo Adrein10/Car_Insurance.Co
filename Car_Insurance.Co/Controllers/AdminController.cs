@@ -18,6 +18,14 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
+        public IActionResult login()
+        {
+            return View();
+        }
+        public IActionResult logout()
+        {
+            return View();
+        }
         public IActionResult policy()
         {
             return View();
