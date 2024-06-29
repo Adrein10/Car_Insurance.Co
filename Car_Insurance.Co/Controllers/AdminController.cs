@@ -46,9 +46,7 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
-<<<<<<< HEAD
 
-=======
         public IActionResult RegisterAdmin()
         {
             return View();
@@ -61,6 +59,6 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
->>>>>>> 8aca920da41b2a6d626c4be2e62ecbda05f56a43
+
     }
 }

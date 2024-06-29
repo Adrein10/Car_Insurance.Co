@@ -60,12 +60,19 @@ namespace Car_Insurance.Co.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Signup(UserDetail user,IFormFile samepass)
+        public IActionResult Signup(UserDetail user,string ConfirmPassword)
         {
-            var sgs = 123;
-            context.UserDetails.Add(user);
-            context.SaveChanges();
-            return RedirectToAction("Login");
+            if(ConfirmPassword == user.Userpassword)
+            {
+                context.UserDetails.Add(user);
+                context.SaveChanges();
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                ViewBag.confirmpass = "Password is not match";
+            }
+            return View();
         }
         public IActionResult Login()
         {
@@ -74,7 +81,7 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
         public IActionResult Login(UserDetail user)
         {
-            var show = context.UserDetails.Where(option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
+            var show = context.UserDetails.Where( option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
             if (show != null)
             {
                 return RedirectToAction("Index");

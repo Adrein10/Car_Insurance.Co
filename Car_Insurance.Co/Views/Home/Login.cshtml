@@ -39,10 +39,6 @@
             <!-- Sec Title -->
             <div class="title-box">
                 <h2>Login in</h2>
-                <div class="text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum
-                </div>
             </div>
 
             <!-- Form Box -->
@@ -53,24 +49,23 @@
                         <div class="form-group">
                             <label>Enter your Email</label>
                             <span class="icon flaticon-envelope"></span>
-                            <input asp-for="Useremail" type="text" name="username" value="" placeholder="User Name" required />
+                            <input asp-for="Useremail" type="text" value="" placeholder="User Name" required />
                         </div>
                         <div class="form-group">
                             <label>Enter your Password</label>
                             <span class="icon flaticon-padlock-1"></span>
-                            <input asp-for="Userpassword" type="password" name="password" value="" placeholder="Password" required />
+                            <input asp-for="Userpassword" class="form-control" placeholder="Password" required />
                             <span class="eye-icon flaticon-eye"></span>
                         </div>
                         <div class="form-group">
-                            <div class="clearfix">
-                                <div class="pull-left">
-                                    <div class="check-box">
-                                        <input type="checkbox" name="remember-password" id="type-20" />
-                                        <label for="type-1">Remember Password</label>
-                                    </div>
-                                </div>
+                            <div class="check-box">
+                                <input type="checkbox" name="AgreeTerms" id="AgreeTerms" required />
+                                <label for="AgreeTerms">
+                                   Remember Password
+                                </label>
                             </div>
                         </div>
+                        <p class="text-danger">@ViewBag.failed</p>
                         <div class="form-group text-center">
                             <button type="submit" class="theme-btn btn-style-one">
                                 <span class="txt">Login in</span>
