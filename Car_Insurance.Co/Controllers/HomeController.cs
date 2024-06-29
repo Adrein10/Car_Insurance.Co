@@ -38,10 +38,7 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
-        public IActionResult Login()
-        {
-            return View();
-        }
+        
         public IActionResult NewsDetail()
         {
             return View();
@@ -60,6 +57,32 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Signup()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Signup(UserDetail user,IFormFile samepass)
+        {
+            var sgs = 123;
+            context.UserDetails.Add(user);
+            context.SaveChanges();
+            return RedirectToAction("Login");
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(UserDetail user)
+        {
+            var show = context.UserDetails.Where(option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
+            if (show != null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.failed = "Login Failed";
+            }
             return View();
         }
         public IActionResult Team()

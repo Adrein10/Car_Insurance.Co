@@ -9,5 +9,6 @@ namespace Car_Insurance.Co.Models
         public string? AdminName { get; set; }
         public string? AdminEmail { get; set; }
         public string? AdminPassword { get; set; }
+        public DateTime? RegisterDate { get; set; }
     }
 }

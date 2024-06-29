@@ -57,6 +57,8 @@ namespace Car_Insurance.Co.Data
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("admin_password");
+
+                entity.Property(e => e.RegisterDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<CeoDetail>(entity =>

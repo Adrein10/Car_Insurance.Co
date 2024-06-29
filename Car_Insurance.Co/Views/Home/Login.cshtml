@@ -1,4 +1,4 @@
-﻿
+﻿@model Car_Insurance.Co.Models.UserDetail
 @{
     ViewData["Title"] = "Login";
 }
@@ -20,7 +20,7 @@
         <div class="auto-container">
             <h1>Login In</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index.html">home</a></li>
+                <li><a asp-controller="Home" asp-action="Index">home</a></li>
                 <li>Services</li>
             </ul>
         </div>
@@ -49,16 +49,16 @@
             <div class="form-box">
                 <!-- Login Form -->
                 <div class="styled-form">
-                    <form method="post" action="index.html">
+                    <form method="post">
                         <div class="form-group">
                             <label>Enter your Email</label>
                             <span class="icon flaticon-envelope"></span>
-                            <input type="text" name="username" value="" placeholder="User Name" required />
+                            <input asp-for="Useremail" type="text" name="username" value="" placeholder="User Name" required />
                         </div>
                         <div class="form-group">
                             <label>Enter your Password</label>
                             <span class="icon flaticon-padlock-1"></span>
-                            <input type="password" name="password" value="" placeholder="Password" required />
+                            <input asp-for="Userpassword" type="password" name="password" value="" placeholder="Password" required />
                             <span class="eye-icon flaticon-eye"></span>
                         </div>
                         <div class="form-group">
@@ -69,19 +69,16 @@
                                         <label for="type-1">Remember Password</label>
                                     </div>
                                 </div>
-                                <div class="pull-right">
-                                    <a href="#" class="forgot">Forget your Password?</a>
-                                </div>
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <button type="button" class="theme-btn btn-style-one">
+                            <button type="submit" class="theme-btn btn-style-one">
                                 <span class="txt">Login in</span>
                             </button>
                         </div>
                         <div class="form-group">
                             <div class="users">
-                                Don't have account? <a href="signup.html">Sign up</a>
+                                Don't have account? <a asp-controller="Home" asp-action="signup">Sign up</a>
                             </div>
                         </div>
                     </form>
