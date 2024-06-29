@@ -26,6 +26,14 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
+        public IActionResult RegisterAdmin()
+        {
+            return View();
+        }
+        public IActionResult AdminInfo()
+        {
+            return View();
+        }
         public IActionResult policy()
         {
             return View();
