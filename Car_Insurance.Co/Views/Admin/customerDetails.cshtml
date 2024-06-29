@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Car_Insurance.Co.Models.UserDetail>
+@{
     Layout = "_Admin";
 }
 
@@ -51,80 +52,30 @@
                         <table class="table align-items-center table-flush table-borderless">
                             <thead>
                                 <tr>
-                                    <th>User Name</th>
-                                    <th>User Email</th>
-                                    <th>Contact Number</th>
+                                    <th>UserName</th>
+                                    <th>Contact</th>
+                                    <th>Email</th>
                                     <th>Password</th>
-                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Iphone 5</td>
-                                    <td>iphone5@example.com</td>
-                                    <td>123-456-7890</td>
-                                    <td>*********</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <button type="button"
-                                                class="btn btn-outline-danger fw-bolder border-danger bg-white hover-effect">
-                                            Delete <i class="fas fa-times-circle mr-1"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Earphone GL</td>
-                                    <td>earphone_gl@example.com</td>
-                                    <td>123-456-7891</td>
-                                    <td>*********</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <button type="button"
-                                                class="btn btn-outline-danger fw-bolder border-danger bg-white hover-effect">
-                                            Delete <i class="fas fa-times-circle mr-1"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>HD Hand Camera</td>
-                                    <td>hd_camera@example.com</td>
-                                    <td>123-456-7892</td>
-                                    <td>*********</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <button type="button"
-                                                class="btn btn-outline-danger fw-bolder border-danger bg-white hover-effect">
-                                            Delete <i class="fas fa-times-circle mr-1"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Clasic Shoes</td>
-                                    <td>clasic_shoes@example.com</td>
-                                    <td>123-456-7893</td>
-                                    <td>*********</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <button type="button"
-                                                class="btn btn-outline-danger fw-bolder border-danger bg-white hover-effect">
-                                            Delete <i class="fas fa-times-circle mr-1"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Hand Watch</td>
-                                    <td>hand_watch@example.com</td>
-                                    <td>123-456-7894</td>
-                                    <td>*********</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>
-                                        <button type="button"
-                                                class="btn btn-outline-danger fw-bolder border-danger bg-white hover-effect">
-                                            Delete <i class="fas fa-times-circle mr-1"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Usercontact)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Useremail)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Userpassword)</td>
+                                        <td>
+                                            <a asp-controller="Admin" asp-action="CustomerDelete" asp-route-id="@item.Id"
+                                               class="btn btn-outline-danger fw-bolder border-danger bg-white hover-effect"
+                                               onclick="return confirmDelete('@item.Username', '@Url.Action("CustomerDelete", "Admin", new { id = item.Id })')">
+                                                Delete <i class="fas fa-times-circle mr-1"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -142,3 +93,20 @@
         border-color: white !important;
     }
 </style>
+
+<script>
+    function confirmDelete(username, deleteUrl) {
+        if (confirm(`Are you sure you want to delete ${username}?`)) {
+            $.post(deleteUrl)
+                .done(function (response) {
+                    console.log(`Deleted ${username}`);
+                    // Optionally, you can update the UI here if needed
+                    location.reload(); // Refresh the page or update UI
+                })
+                .fail(function (error) {
+                    console.error(`Error deleting ${username}: ${error}`);
+                });
+        }
+        return false; // Prevent default link action
+    }
+</script>

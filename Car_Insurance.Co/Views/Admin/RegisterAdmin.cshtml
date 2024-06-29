@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Car_Insurance.Co.Models.AdminDetail
+@{
     Layout = "_Admin";
 }
 @{
@@ -14,23 +15,24 @@
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-center py-3">Register Admin</div>
                         <hr>
-                        <form class="my-5">
+                        <form class="my-5" method="post">
                             <div class="form-group px-2 mt-3">
                                 <label for="input-1" >Name</label>
-                                <input type="text" class="form-control" name="name" id="input-1" placeholder="Enter Your Name">
+                                <input asp-for="AdminName" type="text" class="form-control" id="input-1" placeholder="Enter Your Name">
                             </div>
                             <div class="form-group px-2 mt-3">
                                 <label for="input-2">Email</label>
-                                <input type="text" class="form-control" name="email" id="input-2" placeholder="Enter Your Email Address">
+                                <input asp-for="AdminEmail" type="text" class="form-control" id="input-2" placeholder="Enter Your Email Address">
                             </div>                
                             <div class="form-group px-2 mt-3">
                                 <label for="input-4">Password</label>
-                                <input type="text" class="form-control" name="password" id="input-4" placeholder="Enter Password">
+                                <input asp-for="AdminPassword" type="password" class="form-control" id="input-4" placeholder="Enter Password">
                             </div>
                             <div class="form-group px-2 mt-3">
                                 <label for="input-5">Confirm Password</label>
-                                <input type="text" class="form-control" name="cpassword" id="input-5" placeholder="Confirm Password">
+                                <input type="password" class="form-control" name="cpassword" id="input-5" placeholder="Confirm Password">
                             </div>
+                            <p cite="text-danger">@ViewBag.notsame</p>
                             <div class="form-group px-2 mt-3">
                                 <div class="icheck-material-white">
                                     <input type="checkbox" id="user-checkbox1" name="term" checked="" />
