@@ -59,6 +59,7 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
+   
         [HttpPost]
         public IActionResult Signup(UserDetail user,string ConfirmPassword)
         {
@@ -109,7 +110,11 @@ namespace Car_Insurance.Co.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult BillingInfo()
+		{
+			return View();
+		}
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
