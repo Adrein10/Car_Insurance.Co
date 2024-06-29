@@ -18,6 +18,26 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
+
+        public IActionResult customerDetails()
+        {
+            return View();
+        }
+
+        public IActionResult vehicalInfo()
+        {
+            return View();
+        }
+
+        public IActionResult insuranceApproval()
+        {
+            return View();
+        }
+
+        public IActionResult insurances()
+        {
+            return View();
+        }
         public IActionResult login()
         {
             return View();
@@ -26,9 +46,6 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
-        public IActionResult policy()
-        {
-            return View();
-        }
+
     }
 }
