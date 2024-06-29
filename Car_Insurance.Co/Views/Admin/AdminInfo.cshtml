@@ -1,64 +1,108 @@
-﻿
+﻿@{
+    Layout = "_Admin";
+}
 @{
     ViewData["Title"] = "AdminInfo";
 }
 
-<div class="row">
-    <div class="col-12 col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                Recent Order Tables
-                <div class="card-action">
-                    <div class="dropdown">
-                        <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret"
-                           data-toggle="dropdown">
-                            <i class="icon-options"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javascript:void();">Action</a>
-                            <a class="dropdown-item" href="javascript:void();">Another action</a>
-                            <a class="dropdown-item" href="javascript:void();">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void();">Separated link</a>
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        Recent Order Tables
+                        <div class="card-action">
+                            <div class="dropdown">
+                                <a href="javascript:void();" class="dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown">
+                                    <i class="icon-options"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="javascript:void();">Action</a>
+                                    <a class="dropdown-item" href="javascript:void();">Another action</a>
+                                    <a class="dropdown-item" href="javascript:void();">Something else here</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript:void();">Separated link</a>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>Admin Id</th>
+                                    <th>Name</th>
+                                    <th>Photo</th>
+                                    <th>Email</th>
+                                    <th>Actions</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>Owais</td>
+                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
+                                    <td>Owais@gmail.com</td>
+                                    <td>
+                                        <div>
+                                            <a href="#" style=" color: rgb(255, 251, 5); font-size: 20px;">
+                                                <i class="fa-solid fa-pen-to-square "></i>
+                                            </a>
+                                            <a href="#" class="mx-3" style=" color: red; font-size: 20px;">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                         <tr>
+                                    <td>01</td>
+                                    <td>Owais</td>
+                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
+                                    <td>Owais@gmail.com</td>
+                                    <td>
+                                        <div>
+                                            <a href="#" style=" color: rgb(255, 251, 5); font-size: 20px;">
+                                                <i class="fa-solid fa-pen-to-square "></i>
+                                            </a>
+                                            <a href="#" class="mx-3" style=" color: red; font-size: 20px;">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                         <tr>
+                                    <td>01</td>
+                                    <td>Owais</td>
+                                    <td><img src="https://via.placeholder.com/110x110" class="product-img" alt="product img"></td>
+                                    <td>Owais@gmail.com</td>
+                                    <td>
+                                        <div>
+                                            <a href="#" style=" color: rgb(255, 251, 5); font-size: 20px;">
+                                                <i class="fa-solid fa-pen-to-square "></i>
+                                            </a>
+                                            <a href="#" class="mx-3" style=" color: red; font-size: 20px;">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                               
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table align-items-center table-flush table-borderless">
-                    <thead>
-                        <tr>
-                            <th>Admin Id</th>
-                            <th>Name</th>
-                            <th>Photo</th>
-                            <th>Email</th>
-
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Iphone 5</td>
-                            <td>
-                                <img src="https://via.placeholder.com/110x110" class="product-img"
-                                     alt="product img">
-                            </td>
-                            <td>#9405822</td>
-                            <td>$ 1250.00</td>
-
-                            <td>
-                                <div>
-                                    <a href="" class="btn btn-success py-3" type="button" value="Block" style="color: red;">Block</a>
-                                    <a href="" class="btn btn-success py-3" type="button" value="Block" style="color: red;">Delete</a>
-                                </div>
-                            </td>
-                        </tr>
+        </div><!--End Row-->
 
 
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
-</div>
+
+</div><!--End wrapper-->
