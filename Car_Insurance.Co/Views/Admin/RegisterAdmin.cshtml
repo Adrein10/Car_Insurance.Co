@@ -20,10 +20,12 @@
                                 <label for="input-1" >Name</label>
                                 <input asp-for="AdminName" type="text" class="form-control" id="input-1" placeholder="Enter Your Name">
                             </div>
+                            <p class="text-danger">@ViewBag.Adminuniquename</p>
                             <div class="form-group px-2 mt-3">
                                 <label for="input-2">Email</label>
                                 <input asp-for="AdminEmail" type="text" class="form-control" id="input-2" placeholder="Enter Your Email Address">
-                            </div>                
+                            </div>
+                            <p class="text-danger">@ViewBag.Adminuniqueemail</p>
                             <div class="form-group px-2 mt-3">
                                 <label for="input-4">Password</label>
                                 <input asp-for="AdminPassword" type="password" class="form-control" id="input-4" placeholder="Enter Password">

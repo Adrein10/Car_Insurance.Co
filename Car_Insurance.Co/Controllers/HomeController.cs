@@ -1,6 +1,8 @@
 ﻿using Car_Insurance.Co.Data;
 using Car_Insurance.Co.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 using System.Diagnostics;
 
 namespace Car_Insurance.Co.Controllers
@@ -63,6 +65,23 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
         public IActionResult Signup(UserDetail user,string ConfirmPassword)
         {
+            var name = context.UserDetails.Where(option => option.Username == user.Username).FirstOrDefault();
+            var email = context.UserDetails.Where(option => option.Useremail == user.Useremail).FirstOrDefault();
+            if(name != null && email != null)
+            {
+                ViewBag.uniquename = "The name you entered is already exist";
+                ViewBag.uniqueemail = "The email you entered is already exist";
+            }
+            else if(name != null)
+            {
+                ViewBag.uniquename = "The name you entered is already exist";
+            }else if(email != null)
+            {
+                ViewBag.uniqueemail = "The email you entered is already exist";
+            }
+            else
+            {
+
             if(ConfirmPassword == user.Userpassword)
             {
                 context.UserDetails.Add(user);
@@ -72,6 +91,7 @@ namespace Car_Insurance.Co.Controllers
             else
             {
                 ViewBag.confirmpass = "Password is not match";
+            }
             }
             return View();
         }

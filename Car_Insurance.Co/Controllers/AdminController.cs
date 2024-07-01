@@ -70,18 +70,37 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
 		public IActionResult RegisterAdmin(AdminDetail admin,string cpassword)
 		{
-            if(cpassword == admin.AdminPassword)
+            var name = context.AdminDetails.Where(option => option.AdminName == admin.AdminName).FirstOrDefault();
+            var email = context.AdminDetails.Where(option => option.AdminEmail == admin.AdminEmail).FirstOrDefault();
+            if (name != null && email != null)
             {
-            context.AdminDetails.Add(admin);
-            context.SaveChanges();
-			return View("Index");
+                ViewBag.Adminuniquename = "The name you entered is already exist";
+                ViewBag.Adminuniqueemail = "The email you entered is already exist";
+            }
+            else if (name != null)
+            {
+                ViewBag.Adminuniquename = "The name you entered is already exist";
+            }
+            else if (email != null)
+            {
+                ViewBag.Adminuniqueemail = "The email you entered is already exist";
             }
             else
             {
-                ViewBag.notsame = "Password is not match";
+
+                if (cpassword == admin.AdminPassword)
+                {
+                    context.AdminDetails.Add(admin);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.notsame = "Password is not match";
+                }
             }
             return View();
-		}
+        }
 		public IActionResult AdminInfo()
         {
             return View();

@@ -41,6 +41,12 @@ namespace Car_Insurance.Co.Data
             {
                 entity.ToTable("admin_detail");
 
+                entity.HasIndex(e => e.AdminEmail, "UQ_adminemail")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.AdminName, "UQ_adminname")
+                    .IsUnique();
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.AdminEmail)
@@ -236,6 +242,12 @@ namespace Car_Insurance.Co.Data
             modelBuilder.Entity<UserDetail>(entity =>
             {
                 entity.ToTable("user_detail");
+
+                entity.HasIndex(e => e.Useremail, "UQ_useremail")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.Username, "UQ_username")
+                    .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
