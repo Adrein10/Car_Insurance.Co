@@ -1,7 +1,6 @@
 ﻿@{
     Layout = "_Admin";
 }
-
 <div class="content-wrapper">
     <div class="container-fluid">
 
@@ -36,7 +35,9 @@
                                 <div class="progress-bar" style="width:55%"></div>
                             </div>
                             <p class="mb-0 text-white small-font">
-                                Insurence Requests <span class="float-right">+1.2% <i class="zmdi zmdi-long-arrow-up"></i></span>
+                                Insurence Requests <span class="float-right">
+                                    +1.2% <i class="zmdi zmdi-long-arrow-up"></i>
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -81,7 +82,7 @@
         <div class="row">
             <div class="col-12 col-lg-12">
                 <div class="card">
-                    <div class="card-header ">
+                    <div class="card-header">
                         <h5 class="my-1">Insurance Requests</h5>
                     </div>
                     <div class="table-responsive">
@@ -108,29 +109,109 @@
                                     <td>03 Aug 2017</td>
                                     <td>03 Aug 2017</td>
                                     <td>03 Aug 2017</td>
-                                    <td>03 Aug 2017</td>
                                     <td>
-                                        <select name="" id="">
-                                            <option value="">pending</option>
-                                            <option value="">Approved</option>
-                                        </select>
+                                        <div class="status-select">
+                                            <select class="customselect">
+                                                <option value="pending">Pending</option>
+                                                <option value="approved">Approved</option>
+                                            </select>
+                                            <i class="status-icon"></i>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
+
 
     </div>
 </div>
 
 <style>
-    .table-responsive {
-        -webkit-overflow-scrolling: auto;
-        scrollbar-color: white transparent;
-        scroll-padding-bottom: 20px;
+    .statusselect {
+        position: relative;
+    }
+
+    .customselect {
+        padding: 8px 12px;
+        font-size: 16px;
+        color: white;
+        background-color: green;
+        border-radius: 5px;
+        border: none;
+    }
+
+        .customselect option[value="pending"] {
+            background-color: green;
+            color: white;
+        }
+
+        .customselect option[value="approved"] {
+            background-color: blue;
+            color: white;
+        }
+
+    .status-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: green;
+        display: none;
+    }
+
+    .customselect:focus + .status-icon {
+        display: block;
     }
 </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var previousValue = $('.customselect').val();
+
+        $('.customselect').change(function () {
+            var selectedValue = $(this).val();
+
+            if (selectedValue === 'approved') {
+                $(this).prop('disabled', true);  // Disable select after approval
+            }
+
+            if (previousValue === 'approved' && selectedValue === 'pending') {
+                $(this).val('approved');  // If trying to revert to pending after approval, keep it approved
+            }
+
+            previousValue = $(this).val();
+
+            updateStatusIcons();
+        });
+
+        function updateStatusIcons() {
+            $('.customselect').each(function () {
+                var $select = $(this);
+                var $icon = $select.parent().find('.status-icon');
+
+                if ($select.val() === 'pending') {
+                    $icon.removeClass().addClass('status-icon zmdi zmdi-time');
+                    $select.css({
+                        'background-color': 'blue',
+                        'color': 'white'
+                    });
+                } else if ($select.val() === 'approved') {
+                    $icon.removeClass().addClass('status-icon zmdi zmdi-check-circle');
+                    $select.css({
+                        'background-color': 'green',
+                        'color': 'white'
+                    });
+                }
+            });
+        }
+
+        // Initialize status icons on page load
+        updateStatusIcons();
+    });
+</script>
