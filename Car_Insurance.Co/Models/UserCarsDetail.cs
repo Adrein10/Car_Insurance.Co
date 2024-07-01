@@ -19,7 +19,12 @@ namespace Car_Insurance.Co.Models
         public string? Chasisnumber { get; set; }
         public long? Carrcc { get; set; }
         public int? Userid { get; set; }
+        public string? City { get; set; }
+        public string? Color { get; set; }
+        public string? Purpose { get; set; }
+        public int? PolicyId { get; set; }
 
+        public virtual InsurancePolicy? Policy { get; set; }
         public virtual UserDetail? User { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

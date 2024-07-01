@@ -58,6 +58,20 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult login(AdminDetail admin)
+        {
+            var show = context.AdminDetails.Where(option => option.AdminName == admin.AdminName || option.AdminEmail == admin.AdminName && option.AdminPassword == admin.AdminPassword).FirstOrDefault();
+            if(show != null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Adminloginfailed = "Incorect User Or Password";
+            }
+            return View();
+        }
         public IActionResult logout()
         {
             return View();

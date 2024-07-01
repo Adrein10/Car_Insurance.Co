@@ -109,7 +109,7 @@ namespace Car_Insurance.Co.Controllers
             }
             else
             {
-                ViewBag.failed = "Login Failed";
+                ViewBag.failed = "Incorrect User Or Password";
             }
             return View();
         }
