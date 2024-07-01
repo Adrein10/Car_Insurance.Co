@@ -3,33 +3,35 @@
     ViewData["Title"] = "BillingInfo";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insurance Policy - Billing Information</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             background-color: #f5f5f5;
             padding: 20px;
+            line-height:normal;
         }
 
-        .container {
-            border: 2px solid blue;
+        .container1 {
+            box-shadow: 0px 0px 15px -1px rgba(0,0,0,0.75);
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 600px;
+            padding: 20px 60px;
+            max-width: 650px;
             margin: 0 auto;
+            color: black;
+            max-height: fit-content;
         }
 
+
         h2 {
+
             text-align: center;
             margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid black;
         }
 
         .policy-details {
@@ -69,11 +71,17 @@
             text-align: right;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Insurance Policy</h2>
 
+    <div class="download-section">
+        <p>
+            <a href="#" id="downloadLink">
+                <i class="fa fa-download"></i> Download Insurance Policy PDF
+            </a>
+        </p>
+    </div>
+    <div id="contentToConvert" class="container1">
+       
+        <h2>Insurance Policy</h2>
         <div class="policy-details">
             <p><strong>Policy Number:</strong> [Unique Policy Number]</p>
             <p><strong>Policyholder:</strong> [Customer's Name]</p>
@@ -81,7 +89,6 @@
             <p><strong>Effective Date:</strong> [Date from which the policy is valid]</p>
             <p><strong>Expiry Date:</strong> [Date until which the policy remains valid]</p>
         </div>
-
         <div class="coverage-details">
             <p><strong>Coverage Details:</strong></p>
             <p><strong>Third Party Liability:</strong> [Coverage details]</p>
@@ -89,22 +96,38 @@
             <p><strong>Premium:</strong> [Amount paid by the customer]</p>
             <p><strong>Deductible:</strong> [If applicable]</p>
         </div>
-
         <div class="terms-conditions">
             <p><strong>Terms and Conditions:</strong></p>
             <p>The policy is valid only upon payment of the premium.</p>
             <p>Coverage is subject to terms and conditions outlined in the policy document.</p>
             <p>Claims process and requirements are as per company guidelines.</p>
         </div>
-
         <div class="certification">
             <p><strong>Certification:</strong></p>
             <p>This is to certify that the above-mentioned vehicle is insured with [Your Company Name] as per the terms and conditions mentioned herein.</p>
         </div>
-
         <div class="signature">
             <p><strong>Authorized Signature:</strong> [Signature]</p>
         </div>
     </div>
-</body>
-</html>
+    <script>
+        document.getElementById('downloadLink').addEventListener('click', function () {
+            var element = document.getElementById('contentToConvert');
+
+            // Define options for the PDF generation
+            var opt = {
+                margin: 1,
+                filename: 'InsurancePolicy.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            // Use html2pdf.js to generate PDF
+            html2pdf().set(opt).from(element).save();
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+
+
