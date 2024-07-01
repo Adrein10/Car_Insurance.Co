@@ -2,6 +2,11 @@
 @{
     ViewData["Title"] = "InsuranceForm";
 }
+<style>
+    .form-column {
+        box-shadow: 0px 0px 17px 1px rgba(0,0,0,0.75);
+    }
+</style>
 
 <!-- Page Title -->
 <section class="page-title">
@@ -50,17 +55,17 @@
             </div>
             <div class="row clearfix">
                 <!-- Column -->
-                <div class="form-column col-lg-6 col-md-12 col-sm-12">
+                <div class="form-column col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <h4>Owner Info</h4>
 
                         <!-- Login Form -->
-                        <div class="styled-form">
+                        <div class="styled-form ">
                             <form method="post" action="index.html">
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Enter your Name *</label>
-                                        <span class="icon flaticon-user-2"></span>
+                                        <span class="icon flaticon-padlock-1"></span>
                                         <input type="text" name="username" value="" placeholder="Your Name" required />
                                     </div>
                                     <div class="form-group">
@@ -70,17 +75,27 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Re-enter your password</label>
-                                        <span class="icon flaticon-phone-call"></span>
-                                        <input type="password" name="password" value="" placeholder="Your Phone Number" required />
+                                        <span class="icon flaticon-padlock-1"></span>
+                                        <input type="password" name="password" value="" placeholder="Your Password" required />
                                     </div>
                                 </fieldset>
                                 <h4>Veicle Info</h4>
 
                                 <fieldset>
                                     <div class="form-group">
+                                        <label>What is your vehicle Name*</label>
+                                        <span class="icon flaticon-edit"></span>
+                                        <input type="text" name="username" value="" placeholder="Your Vehicle Name" required />
+                                    </div>
+                                    <div class="form-group">
                                         <label>What is your vehicle number*</label>
                                         <span class="icon flaticon-edit"></span>
                                         <input type="text" name="username" value="" placeholder="Your policy number" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>What is your Engine number*</label>
+                                        <span class="icon flaticon-edit"></span>
+                                        <input type="text" name="username" value="" placeholder="Your car's engine number" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your city*</label>
@@ -114,6 +129,16 @@
                                             <option>fuel 03</option>
                                             <option>fuel 04</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>What is your vehicle Color*</label>
+                                        <span class="icon flaticon-edit"></span>
+                                        <input type="text" name="username" value="" placeholder="Your Car Color" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>What is your Car CC*</label>
+                                        <span class="icon flaticon-edit"></span>
+                                        <input type="text" name="username" value="" placeholder="Your Car CC" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is you car Purchase date & year*</label>
@@ -171,97 +196,7 @@
                     </div>
                 </div>
                 <!-- Column -->
-                <div class="form-column col-lg-6 col-md-12 col-sm-12">
-                    <div class="inner-column">
-                        <h4>Pick some offers :</h4>
-
-                        <!-- Login Form -->
-                        <div class="styled-form">
-                            <form method="post" action="index.html">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <div class="radio-box-two">
-                                            <input type="radio" checked name="remember-password" id="type-5" />
-                                            <label for="type-5">
-                                                <strong>Saved $10</strong> This is 10%
-                                                discount<span class="radio-two-icon flaticon-hand"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="radio-box-two">
-                                            <input type="radio" name="remember-password" id="type-6" />
-                                            <label for="type-6">
-                                                <strong>Saved $10</strong> This is 10%
-                                                discount<span class="radio-two-icon flaticon-hand"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="radio-box-two">
-                                            <input type="radio" name="remember-password" id="type-7" />
-                                            <label for="type-7">
-                                                <strong>Saved $10</strong> This is 10%
-                                                discount<span class="radio-two-icon flaticon-hand"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
-
-                                <h4>Additional Items :</h4>
-                                <fieldset>
-                                    <div class="form-group">
-                                        <div class="radio-box-two style-two">
-                                            <input type="radio" name="remember-password" id="type-8" />
-                                            <label for="type-8">
-                                                <strong>Saved $10</strong> This is 10%
-                                                discount<span class="radio-two-icon flaticon-hand"></span><span class="price">20$</span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="radio-box-two style-two">
-                                            <input type="radio" name="remember-password" id="type-9" />
-                                            <label for="type-9">
-                                                <strong>Saved $10</strong> This is 10%
-                                                discount<span class="radio-two-icon flaticon-hand"></span><span class="price">20$</span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="radio-box-two style-two">
-                                            <input type="radio" name="remember-password" id="type-20" />
-                                            <label for="type-20">
-                                                <strong>Saved $10</strong> This is 10%
-                                                discount<span class="radio-two-icon flaticon-hand"></span><span class="price">20$</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-
-                        <!-- Expiry Box -->
-                        <div class="expiry-box">
-                            <div class="box-inner" style="
-                          background-image: url(images/resource/insurance.jpg);
-                        ">
-                                <h3>
-                                    We will remind you before <br />
-                                    your current policy expire.
-                                </h3>
-                                <a class="btn-style-two theme-btn" href="about.html">
-                                    <span class="txt">Click Here</span><i class="fa fa-chevron-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Expiry Box -->
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
