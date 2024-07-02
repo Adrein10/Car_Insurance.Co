@@ -38,7 +38,14 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult InsuranceForm()
         {
-            return View();
+            InsuranceViewModel insuranceForm = new InsuranceViewModel()
+            {
+                    userDetailTable = new UserDetail(),
+                userCarDetail = new UserCarsDetail(),
+                insurancePolicyTable = new InsurancePolicy()
+
+            };
+            return View(insuranceForm);
         }
         
         public IActionResult NewsDetail()
