@@ -1,6 +1,9 @@
-﻿@model Car_Insurance.Co.Models.InsuranceViewModel;
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor;
+@model Car_Insurance.Co.Models.InsuranceViewModel;
 @{
     ViewData["Title"] = "InsuranceForm";
+    var user = accessor.HttpContext.Session.GetString("username");
+    var email = accessor.HttpContext.Session.GetString("useremail");
 }
 <style>
     .form-column {
@@ -66,18 +69,19 @@
                                     <div class="form-group">
                                         <label>Enter your Name *</label>
                                         <span class="icon flaticon-padlock-1"></span>
-                                        <input asp-for="userDetailTable.Username" type="text"  value="" placeholder="Your Name" required />
+                                        <input asp-for="userDetailTable.Username" type="text"  value="@user" placeholder="Your Name" required />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter your Email*</label>
                                         <span class="icon flaticon-envelope"></span>
-                                        <input type="email" asp-for="userDetailTable.Useremail" value="" placeholder="Your Email" required />
+                                        <input type="email" asp-for="userDetailTable.Useremail" value="@email" placeholder="Your Email" required />
                                     </div>
                                     <div class="form-group">
                                         <label>Re-enter your password</label>
                                         <span class="icon flaticon-padlock-1"></span>
                                         <input type="password" asp-for="userDetailTable.Userpassword" value="" placeholder="Your Password" required />
                                     </div>
+                                    <p class="text-danger">@ViewBag.failedpass</p>
                                 </fieldset>
                                 <h4>Veicle Info</h4>
 
@@ -116,7 +120,7 @@
                                     <div class="form-group">
                                         <label>What is your vehicle Color*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <input asp-for="userCarDetail.Color" type="text"  placeholder="Your Car Color" required />
+                                        <input asp-for="userCarDetail.Carcolor" type="text" placeholder="Your Car Color" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your Car CC*</label>

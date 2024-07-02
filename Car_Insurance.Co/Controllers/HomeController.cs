@@ -59,11 +59,14 @@ namespace Car_Insurance.Co.Controllers
             var show = context.UserDetails.Where(option => option.Useremail == insurance.userDetailTable.Useremail && option.Userpassword == insurance.userDetailTable.Userpassword).FirstOrDefault();
             if(show != null)
             {
-
+                context.UserCarsDetails.Add(insurance.userCarDetail);
+                context.InsurancePolicies.Add(insurance.insurancePolicyTable);
+                context.SaveChanges();
+                return RedirectToAction("Index");
             }
             else
             {
-
+                ViewBag.failedpass = "Incorrect password";
             }
             return View();
         }

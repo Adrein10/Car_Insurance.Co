@@ -20,7 +20,6 @@ namespace Car_Insurance.Co.Models
         public long? Carrcc { get; set; }
         public int? Userid { get; set; }
         public string? City { get; set; }
-        public string? Color { get; set; }
         public string? Purpose { get; set; }
         public int? PolicyId { get; set; }
 

@@ -113,7 +113,7 @@ namespace Car_Insurance.Co.Data
                 entity.HasOne(d => d.ClaimStatusNavigation)
                     .WithMany(p => p.ClaimInsurances)
                     .HasForeignKey(d => d.ClaimStatus)
-                    .HasConstraintName("FK__claim_ins__claim__36B12243");
+                    .HasConstraintName("FK__claim_ins__claim__38996AB5");
             });
 
             modelBuilder.Entity<ClaimStatus>(entity =>
@@ -162,22 +162,22 @@ namespace Car_Insurance.Co.Data
                 entity.HasOne(d => d.Car)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.CarId)
-                    .HasConstraintName("FK__order_det__car_i__37A5467C");
+                    .HasConstraintName("FK__order_det__car_i__398D8EEE");
 
                 entity.HasOne(d => d.Claim)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ClaimId)
-                    .HasConstraintName("FK__order_det__claim__3A81B327");
+                    .HasConstraintName("FK__order_det__claim__3C69FB99");
 
                 entity.HasOne(d => d.Plane)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.PlaneId)
-                    .HasConstraintName("FK__order_det__plane__38996AB5");
+                    .HasConstraintName("FK__order_det__plane__3A81B327");
 
                 entity.HasOne(d => d.Status)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.StatusId)
-                    .HasConstraintName("FK__order_det__statu__398D8EEE");
+                    .HasConstraintName("FK__order_det__statu__3B75D760");
             });
 
             modelBuilder.Entity<OrderStatus>(entity =>
@@ -246,10 +246,6 @@ namespace Car_Insurance.Co.Data
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Color)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.Enginenumber)
                     .HasMaxLength(255)
                     .IsUnicode(false)
@@ -272,7 +268,7 @@ namespace Car_Insurance.Co.Data
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserCarsDetails)
                     .HasForeignKey(d => d.Userid)
-                    .HasConstraintName("FK__user_cars__useri__3B75D760");
+                    .HasConstraintName("FK__user_cars__useri__3D5E1FD2");
             });
 
             modelBuilder.Entity<UserDetail>(entity =>
