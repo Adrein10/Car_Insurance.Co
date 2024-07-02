@@ -1207,8 +1207,4 @@
     <None Include="wwwroot\Admin\plugins\sparkline-charts\sparkline-chart-script.js" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Home\" />
-  </ItemGroup>
-
 </Project>
