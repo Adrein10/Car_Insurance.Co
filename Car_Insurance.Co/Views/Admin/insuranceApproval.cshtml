@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "_Admin";
 }
+
 <div class="content-wrapper">
     <div class="container-fluid">
 
@@ -80,13 +81,13 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="my-1">Insurance Requests</h5>
                     </div>
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-borderless">
+                        <table id="insuranceTable" class="table align-items-center table-flush table-borderless">
                             <thead>
                                 <tr>
                                     <th>Customer Name</th>
@@ -106,112 +107,46 @@
                                     <td>iphone5@example.com</td>
                                     <td>123-456-7890</td>
                                     <td>*********</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>03 Aug 2017</td>
-                                    <td>03 Aug 2017</td>
+                                    <td>John Doe</td>
+                                    <td>ABC12345</td>
+                                    <td>1500</td>
+                                    <td>1500</td>
                                     <td>
                                         <div class="status-select">
-                                            <select class="customselect">
-                                                <option value="pending">Pending</option>
-                                                <option value="approved">Approved</option>
-                                            </select>
-                                            <i class="status-icon"></i>
+                                            <span class="badge badge-warning status px-4 py-2">Pending</span>
                                         </div>
                                     </td>
                                 </tr>
+                                <!-- Add more <tr> for each insurance request -->
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
-<style>
-    .statusselect {
-        position: relative;
-    }
+<!-- Bootstrap JS (Optional for alerts) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    .customselect {
-        padding: 8px 12px;
-        font-size: 16px;
-        color: white;
-        background-color: green;
-        border-radius: 5px;
-        border: none;
-    }
+<!-- jQuery (Optional, needed for Bootstrap's JavaScript plugins) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        .customselect option[value="pending"] {
-            background-color: green;
-            color: white;
-        }
-
-        .customselect option[value="approved"] {
-            background-color: blue;
-            color: white;
-        }
-
-    .status-icon {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 18px;
-        color: green;
-        display: none;
-    }
-
-    .customselect:focus + .status-icon {
-        display: block;
-    }
-</style>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
-        var previousValue = $('.customselect').val();
+        // Handle click on Pending status
+        $('#insuranceTable').on('click', '.status', function () {
+            // Get the status text
+            var status = $(this).text().trim();
 
-        $('.customselect').change(function () {
-            var selectedValue = $(this).val();
-
-            if (selectedValue === 'approved') {
-                $(this).prop('disabled', true);  // Disable select after approval
-            }
-
-            if (previousValue === 'approved' && selectedValue === 'pending') {
-                $(this).val('approved');  // If trying to revert to pending after approval, keep it approved
-            }
-
-            previousValue = $(this).val();
-
-            updateStatusIcons();
-        });
-
-        function updateStatusIcons() {
-            $('.customselect').each(function () {
-                var $select = $(this);
-                var $icon = $select.parent().find('.status-icon');
-
-                if ($select.val() === 'pending') {
-                    $icon.removeClass().addClass('status-icon zmdi zmdi-time');
-                    $select.css({
-                        'background-color': 'blue',
-                        'color': 'white'
-                    });
-                } else if ($select.val() === 'approved') {
-                    $icon.removeClass().addClass('status-icon zmdi zmdi-check-circle');
-                    $select.css({
-                        'background-color': 'green',
-                        'color': 'white'
-                    });
+            if (status === 'Pending') {
+                // Show confirmation dialog
+                if (confirm('Are you sure you want to approve this insurance request?')) {
+                    // Change status to Approved
+                    $(this).removeClass('badge-warning').addClass('badge-success').text('Approved');
                 }
-            });
-        }
-
-        // Initialize status icons on page load
-        updateStatusIcons();
+            }
+        });
     });
 </script>
