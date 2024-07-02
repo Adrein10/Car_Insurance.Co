@@ -18,7 +18,7 @@
         <div class="auto-container">
             <h1>About Us</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index.html">home</a></li>
+                <li><a asp-controller="Home" asp-action="Index">home</a></li>
                 <li>About Us</li>
             </ul>
         </div>
@@ -65,13 +65,13 @@
                         <div class="author-box clearfix">
                             <div class="box-inner">
                                 <div class="author-image">
-                                    <img src="images/resource/author-1.jpg" alt="" />
+                                    <img src="~/Home/images/carImages/author-1.jpg" alt="" />
                                 </div>
                                 Luiz Mark
                                 <span>ceo of carsore</span>
                             </div>
                             <div class="signature">
-                                <img src="images/icons/signature-1.png" alt="" />
+                                <img src="~/Home/images/carImages/signature-1.png" alt="" />
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                 <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-graduated-1"></div>
-                                    <h5><a href="services-detail.html">Best Company</a></h5>
+                                    <h5><a asp-controller="Home" asp-action="ServiceDetail">Best Company</a></h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
                                     </div>
@@ -119,7 +119,7 @@
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-bar-chart-1"></div>
                                     <h5>
-                                        <a href="services-detail.html">Growing Business</a>
+                                        <a asp-controller="Home" asp-action="ServiceDetail">Growing Business</a>
                                     </h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
@@ -133,7 +133,7 @@
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-charity"></div>
                                     <h5>
-                                        <a href="services-detail.html">Great Support</a>
+                                        <a asp-controller="Home" asp-action="ServiceDetail">Great Support</a>
                                     </h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
@@ -147,7 +147,7 @@
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-trophy-1"></div>
                                     <h5>
-                                        <a href="services-detail.html">Excellent Service</a>
+                                        <a asp-controller="Home" asp-action="ServiceDetail">Excellent Service</a>
                                     </h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
@@ -164,7 +164,7 @@
                         <div class="image">
                             <span class="triangle-one"></span>
                             <span class="triangle-two"></span>
-                            <img src="images/resource/award.jpg" alt="" />
+                            <img src="~/Home/images/carImages/res/award.jpg" alt="" />
                         </div>
                     </div>
                 </div>
@@ -216,9 +216,9 @@
                                 </li>
                             </ul>
 
-                            <img src="images/resource/team-1.jpg" alt="" />
+                            <img src="~/Home/images/carImages/res/team-1.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -247,9 +247,9 @@
                                 </li>
                             </ul>
 
-                            <img src="images/resource/team-2.jpg" alt="" />
+                            <img src="~/Home/images/resource/team-2.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -278,9 +278,9 @@
                                 </li>
                             </ul>
 
-                            <img src="images/resource/team-3.jpg" alt="" />
+                            <img src="~/Home/images/carImages/res/team-3.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller ="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -309,9 +309,9 @@
                                 </li>
                             </ul>
 
-                            <img src="images/resource/team-4.jpg" alt="" />
+                            <img src="~/Home/images/carImages/res/team-4.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -344,7 +344,7 @@
                 <div class="image-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="image titlt" data-tilt data-tilt-max="2">
-                            <img src="images/resource/choose.jpg" alt="" />
+                            <img src="~/Home/images/carImages/choose.jpg" alt="" />
                             <span class="triangle-one"></span>
                             <span class="triangle-two"></span>
                             <!-- Fact Counter -->
@@ -555,7 +555,7 @@
                         <div class="image">
                             <div class="triangle-one"></div>
                             <div class="triangle-two"></div>
-                            <img src="images/resource/skill.jpg" alt="" />
+                            <img src="~/Home/images/carImages/skill.jpg" alt="" />
                         </div>
                     </div>
                 </div>
@@ -592,7 +592,7 @@
                             <span class="icon flaticon-car-1"></span>
                         </div>
                         <h5>
-                            <a href="insurance-form.html">Enter your Car Numbere</a>
+                            <a asp-controller="Home" asp-action="InsuranceForm">Enter your Car Numbere</a>
                         </h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
@@ -607,7 +607,7 @@
                             <span class="icon flaticon-customer-support"></span>
                         </div>
                         <h5>
-                            <a href="insurance-form.html">Answer few Questions</a>
+                            <a asp-controller="Home" asp-action="InsuranceForm">Answer few Questions</a>
                         </h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
@@ -622,7 +622,7 @@
                             <span class="icon flaticon-clipboard-1"></span>
                         </div>
                         <h5>
-                            <a href="insurance-form.html">Plans & Prices Tailor</a>
+                            <a asp-controller="Home" asp-action="InsuranceForm">Plans & Prices Tailor</a>
                         </h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
@@ -636,7 +636,7 @@
                         <div class="icon-box">
                             <span class="icon flaticon-tags"></span>
                         </div>
-                        <h5><a href="insurance-form.html">Make payment</a></h5>
+                        <h5><a asp-controller="Home" asp-action="InsuranceForm">Make payment</a></h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
                         </div>
@@ -661,7 +661,7 @@
                 <div class="image-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="image titlt" data-tilt data-tilt-max="2">
-                            <img src="images/resource/testimonial.jpg" alt="" />
+                            <img src="~/Home/images/carImages/testimonial.jpg" alt="" />
                             <span class="triangle-one"></span>
                             <span class="triangle-two"></span>
                         </div>
@@ -684,7 +684,7 @@
                             <div class="testimonial-block">
                                 <div class="inner-box">
                                     <div class="quote-icon">
-                                        <img src="images/icons/quote-icon.png" alt="" />
+                                        <img src="~/Home/images/carImages/quote-icon.png" alt="" />
                                     </div>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing and
@@ -696,7 +696,7 @@
                                     <div class="author-box">
                                         <div class="box-inner">
                                             <div class="author-image">
-                                                <img src="images/resource/author-2.jpg" alt="" />
+                                                <img src="~/Home/images/carImages/author-2.jpg" alt="" />
                                             </div>
                                             Luiz Jenifer<br />
                                             <div class="designation">Client</div>
@@ -709,7 +709,7 @@
                             <div class="testimonial-block">
                                 <div class="inner-box">
                                     <div class="quote-icon">
-                                        <img src="images/icons/quote-icon.png" alt="" />
+                                        <img src="~/Home/images/carImages/quote-icon.png" alt="" />
                                     </div>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing and
@@ -721,7 +721,7 @@
                                     <div class="author-box">
                                         <div class="box-inner">
                                             <div class="author-image">
-                                                <img src="images/resource/author-2.jpg" alt="" />
+                                                <img src="~/Home/images/carImages/author-2.jpg" alt="" />
                                             </div>
                                             Luiz Jenifer<br />
                                             <div class="designation">Client</div>
@@ -734,7 +734,7 @@
                             <div class="testimonial-block">
                                 <div class="inner-box">
                                     <div class="quote-icon">
-                                        <img src="images/icons/quote-icon.png" alt="" />
+                                        <img src="~/Home/images/carImages/" alt="" />
                                     </div>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing and
@@ -746,7 +746,7 @@
                                     <div class="author-box">
                                         <div class="box-inner">
                                             <div class="author-image">
-                                                <img src="images/resource/author-2.jpg" alt="" />
+                                                <img src="~/Home/images/carImages/author-2.jpg" alt="" />
                                             </div>
                                             Luiz Jenifer<br />
                                             <div class="designation">Client</div>
@@ -766,7 +766,7 @@
 <section class="page-title">
     <div class="background-container">
         <img class="left-image" src="https://themeim.com/demo/carsore/images/background/header-left-bg.png" alt="" />
-        <img class="right-image" src="./images/background/1.jpg" alt="" />
+        <img class="right-image" src="~/Home/images/carImages/1.jpg" alt="" />
     </div>
     <div class="service-container">
         <div class="section-icons-outer parallax-scene-1">
@@ -777,7 +777,7 @@
         <div class="auto-container">
             <h1>About Us</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index.html">home</a></li>
+                <li><a asp-controller="Home" asp-action="Index">home</a></li>
                 <li>About Us</li>
             </ul>
         </div>
@@ -865,7 +865,7 @@
                                 <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-graduated-1"></div>
-                                    <h5><a href="services-detail.html">Best Company</a></h5>
+                                    <h5><a asp-controller="Home" asp-action="ServiceDetail">Best Company</a></h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
                                     </div>
@@ -878,7 +878,7 @@
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-bar-chart-1"></div>
                                     <h5>
-                                        <a href="services-detail.html">Growing Business</a>
+                                        <a asp-controller="Home" asp-action="ServiceDetail">Growing Business</a>
                                     </h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
@@ -892,7 +892,7 @@
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-charity"></div>
                                     <h5>
-                                        <a href="services-detail.html">Great Support</a>
+                                        <a asp-controller="Home" asp-action="ServiceDetail">Great Support</a>
                                     </h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
@@ -906,7 +906,7 @@
                                     <div class="color-layer"></div>
                                     <div class="icon flaticon-trophy-1"></div>
                                     <h5>
-                                        <a href="services-detail.html">Excellent Service</a>
+                                        <a asp-controller="Home" asp-action="ServiceDetail">Excellent Service</a>
                                     </h5>
                                     <div class="text">
                                         Lorem Ipsum is simply dummy text of the printing.
@@ -975,9 +975,9 @@
                                 </li>
                             </ul>
 
-                            <img src="~/Home/images/resource/team-1.jpg" alt="" />
+                            <img src="~/Home/images/carImages/res/team-1.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -1006,9 +1006,9 @@
                                 </li>
                             </ul>
 
-                            <img src="~/Home/images/resource/team-2.jpg" alt="" />
+                            <img src="~/Home/images/carImages/res/team-2.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -1039,7 +1039,7 @@
 
                             <img src="~/Home/images/resource/team-3.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -1070,7 +1070,7 @@
 
                             <img src="~/Home/images/resource/team-4.jpg" alt="" />
                             <div class="overlay-box">
-                                <h3><a href="team-detail.html">Luiz Hector</a></h3>
+                                <h3><a asp-controller="Home" asp-action="TeamDetail">Luiz Hector</a></h3>
                                 <div class="designation">CEO of Carsore</div>
                             </div>
                         </div>
@@ -1351,7 +1351,7 @@
                             <span class="icon flaticon-car-1"></span>
                         </div>
                         <h5>
-                            <a href="insurance-form.html">Enter your Car Numbere</a>
+                            <a asp-controller="Home" asp-action="InsuranceForm">Enter your Car Numbere</a>
                         </h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
@@ -1366,7 +1366,7 @@
                             <span class="icon flaticon-customer-support"></span>
                         </div>
                         <h5>
-                            <a href="insurance-form.html">Answer few Questions</a>
+                            <a asp-controller="Home" asp-action="InsuranceForm">Answer few Questions</a>
                         </h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
@@ -1381,7 +1381,7 @@
                             <span class="icon flaticon-clipboard-1"></span>
                         </div>
                         <h5>
-                            <a href="insurance-form.html">Plans & Prices Tailor</a>
+                            <a asp-controller="Home" asp-action="InsuranceForm">Plans & Prices Tailor</a>
                         </h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
@@ -1395,7 +1395,7 @@
                         <div class="icon-box">
                             <span class="icon flaticon-tags"></span>
                         </div>
-                        <h5><a href="insurance-form.html">Make payment</a></h5>
+                        <h5><a asp-controller="Home" asp-action="InsuranceForm">Make payment</a></h5>
                         <div class="text">
                             Lorem Ipsum is simply dummy text of the printing and
                         </div>

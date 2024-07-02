@@ -13,20 +13,20 @@
     <div class="background-container">
         <img class="left-image" src="https://themeim.com/demo/carsore/images/background/header-left-bg.png" alt="" />
         <img class="right-image" src="https://themeim.com/demo/carsore/images/background/insurance-form-right-bg.png"
-             alt="" />
+             alt="" /><img src="~/home/images/background/pattern-8.png" />
     </div>
     <div class="service-container" style="
               background-image: url('images/background/services-left-bg.png');
             ">
         <div class="section-icons-outer parallax-scene-1">
-            <div data-depth="0.20" class="pattern-layer" style="background-image: url(images/background/pattern-8.png)">
+            <div data-depth="0.20" class="pattern-layer" style="background-image: url('./Home/images/background/pattern-8.png')">
             </div>
         </div>
 
         <div class="auto-container">
             <h1>Insurance Form</h1>
             <ul class="page-breadcrumb">
-                <li><a href="index.html">home</a></li>
+                <li><a asp-controller="Home" asp-action="Index">home</a></li>
                 <li>Services</li>
             </ul>
         </div>
@@ -57,7 +57,7 @@
                 <!-- Column -->
                 <div class="form-column col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
-                        <h4>Owner Info</h4>
+                        <h2>Owner Info</h2>
 
                         <!-- Login Form -->
                         <div class="styled-form ">

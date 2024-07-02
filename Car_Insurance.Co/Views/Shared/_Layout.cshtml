@@ -89,7 +89,7 @@
 
                                 <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
-                                        <li class="dropdown">
+                                        <li >
                                             <a asp-controller="Home" asp-action="Index">Home</a>
 
                                         </li>
@@ -256,7 +256,7 @@
                         <div class="footer-column col-lg-4 col-md-6 col-sm-12">
                             <div class="footer-widget logo-widget">
                                 <div class="logo">
-                                    <a href="index.html"><img src="~/Home/images/footer-logo.png" alt="" /></a>
+                                    <a asp-controller="Home" asp-action="Index"><img src="~/Home/images/footer-logo.png" alt="" /></a>
                                 </div>
                                 <div class="text">
                                     Lorem Ipsum is simply dummy text of the printing and
@@ -289,12 +289,12 @@
                                     <div class="column col-lg-6 col-md-6 col-sm-12">
                                         <h3>Company</h3>
                                         <ul class="list-links">
-                                            <li><a href="#">About us</a></li>
-                                            <li><a href="#">our team</a></li>
-                                            <li><a href="#">Services</a></li>
-                                            <li><a href="#">insurance</a></li>
-                                            <li><a href="#">blog</a></li>
-                                            <li><a href="#">contact us</a></li>
+                                            <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                                            <li><a asp-controller="Home" asp-action="Team">our team</a></li>
+                                            <li><a asp-controller="Home" asp-action="Services">Services</a></li>
+                                            <li><a asp-controller="Home" asp-action="InsuranceForm">insurance</a></li>
+                                            <li><a asp-controller="Home" asp-action="Blog">blog</a></li>
+                                            <li><a asp-controller="Home" asp-action="Contact">contact us</a></li>
                                         </ul>
                                     </div>
                                     <!-- Column -->
@@ -364,8 +364,8 @@
                         </div>
                         <div class="pull-right">
                             <ul class="footer-nav">
-                                <li><a href="privacy.html">Privacy Policy</a></li>
-                                <li><a href="terms.html">Terms & Condition</a></li>
+                                <li><a asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>
+                                <li><a asp-controller="Home" asp-action="Terms">Terms & Condition</a></li>
                             </ul>
                         </div>
                     </div>
