@@ -22,6 +22,12 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult Index()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if(username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult About()
@@ -38,9 +44,29 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult InsuranceForm()
         {
+            InsuranceViewModel insuranceForm = new InsuranceViewModel()
+            {
+                    userDetailTable = new UserDetail(),
+                userCarDetail = new UserCarsDetail(),
+                insurancePolicyTable = new InsurancePolicy()
+
+            };
+            return View(insuranceForm);
+        }
+        [HttpPost]
+        public IActionResult InsuranceForm(InsuranceViewModel insurance)
+        {
+            var show = context.UserDetails.Where(option => option.Useremail == insurance.userDetailTable.Useremail && option.Userpassword == insurance.userDetailTable.Userpassword).FirstOrDefault();
+            if(show != null)
+            {
+
+            }
+            else
+            {
+
+            }
             return View();
         }
-        
         public IActionResult NewsDetail()
         {
             return View();
@@ -105,6 +131,9 @@ namespace Car_Insurance.Co.Controllers
             var show = context.UserDetails.Where( option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
             if (show != null)
             {
+                accessor.HttpContext.Session.SetString("username", show.Username);
+                accessor.HttpContext.Session.SetString("useremail", show.Useremail);
+                accessor.HttpContext.Session.SetString("userpass", show.Userpassword);
                 return RedirectToAction("Index");
             }
             else
@@ -112,6 +141,16 @@ namespace Car_Insurance.Co.Controllers
                 ViewBag.failed = "Incorrect User Or Password";
             }
             return View();
+        }
+        public IActionResult Logout()
+        {
+            var user = accessor.HttpContext.Session.GetString("username");
+            if(user != null)
+            {
+                accessor.HttpContext.Session.Clear();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("NotFound");
         }
         public IActionResult Team()
         {
