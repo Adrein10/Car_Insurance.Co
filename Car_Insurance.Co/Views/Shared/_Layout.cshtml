@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor;
+<!DOCTYPE html>
 <html class="no-js" lang="en">
 
 <head>
@@ -143,11 +144,14 @@
                             <div class="outer-box clearfix">
                                 <!-- Phone Btn -->
                                 <div class="phone-box">
-                                    <div class="box-inner">
-                                        <a class="phone" href="tel:+1555-89-7965">
-                                            +1555 89 7965
-                                            <span class="icon flaticon-call-2"></span>
-                                        </a>
+                                    <div class="box-inner d-flex">
+                                        @if(accessor.HttpContext.Session.GetString("username") != null)
+                                        {
+                                            <h6 class="px-2">Welcome <br> @ViewBag.sessionuser</h6>
+                                            <a class="btn btn-danger d-flex align-items-center px-3 py-2" asp-controller="Home" asp-action="Logout">Logout</a>
+                                        }else{
+                                        <a class="btn btn-primary" asp-controller="Home" asp-action="Login">Sign in</a>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -177,11 +181,20 @@
                         <!-- Main Menu End-->
                         <div class="outer-box clearfix">
                             <!-- Phone Btn -->
-                            <div class="phone-box">
-                                <div class="box-inner">
-                                    <a class="phone" href="tel:+1555-89-7965">
-                                        +1555 89 7965 <span class="icon flaticon-call-2"></span>
-                                    </a>
+                            <div class="outer-box clearfix">
+                                <!-- Phone Btn -->
+                                <div class="phone-box">
+                                    <div class="box-inner d-flex">
+                                        @if (accessor.HttpContext.Session.GetString("username") != null)
+                                        {
+                                            <h6 class="px-2">Welcome <br> @ViewBag.sessionuser</h6>
+                                            <a class="btn btn-danger d-flex align-items-center px-3 py-2" asp-controller="Home" asp-action="Logout">Logout</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-primary" asp-controller="Home" asp-action="Login">Sign in</a>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

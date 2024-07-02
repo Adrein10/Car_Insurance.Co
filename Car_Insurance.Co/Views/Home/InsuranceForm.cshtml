@@ -61,22 +61,22 @@
 
                         <!-- Login Form -->
                         <div class="styled-form ">
-                            <form method="post" action="index.html">
+                            <form method="post" >
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Enter your Name *</label>
                                         <span class="icon flaticon-padlock-1"></span>
-                                        <input type="text" name="username" value="" placeholder="Your Name" required />
+                                        <input asp-for="userDetailTable.Username" type="text"  value="" placeholder="Your Name" required />
                                     </div>
                                     <div class="form-group">
                                         <label>Enter your Email*</label>
                                         <span class="icon flaticon-envelope"></span>
-                                        <input type="password" name="email" value="" placeholder="Your Email" required />
+                                        <input type="email" asp-for="userDetailTable.Useremail" value="" placeholder="Your Email" required />
                                     </div>
                                     <div class="form-group">
                                         <label>Re-enter your password</label>
                                         <span class="icon flaticon-padlock-1"></span>
-                                        <input type="password" name="password" value="" placeholder="Your Password" required />
+                                        <input type="password" asp-for="userDetailTable.Userpassword" value="" placeholder="Your Password" required />
                                     </div>
                                 </fieldset>
                                 <h4>Veicle Info</h4>
@@ -85,66 +85,49 @@
                                     <div class="form-group">
                                         <label>What is your vehicle Name*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <input type="text" name="username" value="" placeholder="Your Vehicle Name" required />
+                                        <input asp-for="userCarDetail.Carname" type="text" value="" placeholder="Your Vehicle Name" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your vehicle number*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <input type="text" name="username" value="" placeholder="Your policy number" required />
+                                        <input asp-for="userCarDetail.Carnumber" type="text"  value="" placeholder="Your policy number" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your Engine number*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <input type="text" name="username" value="" placeholder="Your car's engine number" required />
+                                        <input asp-for="userCarDetail.Enginenumber" type="text"  value="" placeholder="Your car's engine number" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your city*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <select class="custom-select-box insurence-form-border nice-select">
-                                            <option>Your City</option>
-                                            <option value="" >City 01</option>
-                                            <option value="" >City 02</option>
-                                            <option value="" >City 03</option>
-                                            <option value="">City 04</option>
+                                        <select asp-for="userCarDetail.City" class="custom-select-box insurence-form-border nice-select">
+                                            <option>Select City</option>
+                                            <option value="Karachi">Karachi</option>
+                                            <option value="Islamabad">Islamabad</option>
+                                            <option value="Faisalabad">Faisalabad</option>
+                                            <option value="Lahore">Lahore</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>What is your car model?*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <select class="custom-select-box insurence-form-border nice-select">
-                                            <option>Your VPN Number</option>
-                                            <option>VPN 01</option>
-                                            <option>VPN 02</option>
-                                            <option>VPN 03</option>
-                                            <option>VPN 04</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>What is you car fuel type*</label>
-                                        <span class="icon flaticon-edit"></span>
-                                        <select class="custom-select-box insurence-form-border nice-select">
-                                            <option>Your Car fuel type</option>
-                                            <option>fuel 01</option>
-                                            <option>fuel 02</option>
-                                            <option>fuel 03</option>
-                                            <option>fuel 04</option>
-                                        </select>
+                                        <input asp-for="userCarDetail.Carmodel" type="text" value="" placeholder="Your car's Model" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your vehicle Color*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <input type="text" name="username" value="" placeholder="Your Car Color" required />
+                                        <input asp-for="userCarDetail.Color" type="text"  placeholder="Your Car Color" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your Car CC*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <input type="text" name="username" value="" placeholder="Your Car CC" required />
+                                        <input type="text" asp-for="userCarDetail.Carrcc"  placeholder="Your Car CC" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is you car Purchase date & year*</label>
                                         <span class="icon flaticon-edit"></span>
                                         <span class="calendar-icon flaticon-calendar"></span>
-                                        <input class="datepicker" autocomplete="off" type="text" name="username" value=""
+                                        <input asp-for="insurancePolicyTable.StartDate" class="datepicker" autocomplete="off" type="text" 
                                                placeholder="DD/MM/YYYY" required />
                                     </div>
                                 </fieldset>
@@ -187,7 +170,7 @@
                                 </fieldset>
 
                                 <div class="form-group">
-                                    <button type="button" class="theme-btn btn-style-one">
+                                    <button type="submit" class="theme-btn btn-style-one">
                                         <span class="txt">Confirm <i class="fa fa-arrow-circle-right"></i></span>
                                     </button>
                                 </div>
