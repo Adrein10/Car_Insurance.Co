@@ -32,18 +32,45 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult About()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult Blog()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult Contact()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult InsuranceForm()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+            }
+            else
+            {
+                return View("Login");
+            }
             InsuranceViewModel insuranceForm = new InsuranceViewModel()
             {
                     userDetailTable = new UserDetail(),
@@ -54,13 +81,44 @@ namespace Car_Insurance.Co.Controllers
             return View(insuranceForm);
         }
         [HttpPost]
-        public IActionResult InsuranceForm(InsuranceViewModel insurance)
+        public IActionResult InsuranceForm(InsuranceViewModel insurance,UserDetail user)
         {
+            var Ishow = context.UserDetails.Where(option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
+            if (Ishow != null)
+            {
+                accessor.HttpContext.Session.SetString("username", Ishow.Username);
+                accessor.HttpContext.Session.SetString("useremail", Ishow.Useremail);
+                accessor.HttpContext.Session.SetString("userpass", Ishow.Userpassword);
+                return View();
+            }
+            else
+            {
+                ViewBag.failed = "Incorrect User Or Password";
+            }
             var show = context.UserDetails.Where(option => option.Useremail == insurance.userDetailTable.Useremail && option.Userpassword == insurance.userDetailTable.Userpassword).FirstOrDefault();
             if(show != null)
             {
-                context.UserCarsDetails.Add(insurance.userCarDetail);
-                context.InsurancePolicies.Add(insurance.insurancePolicyTable);
+                UserCarsDetail userCars = new UserCarsDetail()
+                {
+                    Carcolor = insurance.userCarDetail.Carcolor,
+                    Carmodel = insurance.userCarDetail.Carmodel,
+                    Carname = insurance.userCarDetail.Carname,
+                    Carnumber = insurance.userCarDetail.Carnumber,
+                    Carrcc = insurance.userCarDetail.Carrcc,
+                    Chasisnumber = insurance.userCarDetail.Chasisnumber,
+                    City = insurance.userCarDetail.City,
+                    Enginenumber = insurance.userCarDetail.Enginenumber,
+                    PolicyId = insurance.userCarDetail.PolicyId,
+                    Purpose = insurance.userCarDetail.Purpose,
+                    Userid = show.Id,
+                };
+                InsurancePolicy insurancePolicy = new InsurancePolicy()
+                {
+                    StartDate = insurance.insurancePolicyTable.StartDate,
+                };
+                insurancePolicy.UserCarsDetails = new List<UserCarsDetail> { userCars };
+                context.UserCarsDetails.Add(userCars);
+                context.InsurancePolicies.Add(insurancePolicy);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -72,22 +130,53 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult NewsDetail()
         {
+
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult NotFound()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult ServiceDetail()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult Services()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult Signup()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return RedirectToAction("NotFound");
+            }
             return View();
         }
    
@@ -126,6 +215,12 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Login()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return RedirectToAction("NotFound");
+            }
             return View();
         }
         [HttpPost]
@@ -143,6 +238,7 @@ namespace Car_Insurance.Co.Controllers
             {
                 ViewBag.failed = "Incorrect User Or Password";
             }
+           
             return View();
         }
         public IActionResult Logout()
@@ -157,24 +253,54 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Team()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult TeamDetail()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult Tearms()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
         public IActionResult Privacy()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
 
 		public IActionResult BillingInfo()
 		{
-			return View();
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
+            return View();
 		}
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

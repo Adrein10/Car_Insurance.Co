@@ -115,7 +115,7 @@
                                     <div class="form-group">
                                         <label>What is your car model?*</label>
                                         <span class="icon flaticon-edit"></span>
-                                        <input asp-for="userCarDetail.Carmodel" type="text" value="" placeholder="Your car's Model" required />
+                                        <input asp-for="userCarDetail.Carmodel" type="number" value="" placeholder="Your car's Model" required />
                                     </div>
                                     <div class="form-group">
                                         <label>What is your vehicle Color*</label>
@@ -143,13 +143,13 @@
                                             <h6>Vehicle for:</h6>
                                             <div class="form-group margin">
                                                 <div class="radio-box">
-                                                    <input type="radio" name="remember-password" id="type-19" />
+                                                    <input asp-for="userCarDetail.Purpose" value="Commercial" type="radio" name="userCarDetail.Purpose" id="type-19" />
                                                     <label for="type-19">Commercial use</label>
                                                 </div>
                                             </div>
                                             <div class="form-group margin">
                                                 <div class="radio-box">
-                                                    <input type="radio" name="remember-password" id="type-22" />
+                                                    <input asp-for="userCarDetail.Purpose" value="Personal" type="radio" name="userCarDetail.Purpose" id="type-22" />
                                                     <label for="type-22">Personal Use</label>
                                                 </div>
                                             </div>

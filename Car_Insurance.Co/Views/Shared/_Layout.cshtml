@@ -1,4 +1,7 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor;
+@{
+    var Sname = accessor.HttpContext.Session.GetString("username");
+}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -107,13 +110,6 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown">
-                                            <a asp-controller="Home" asp-action="Blog">Blog</a>
-                                            <ul>
-                                                <li><a asp-controller="Home" asp-action="Blog">Our Blog</a></li>
-                                                <li><a asp-controller="Home" asp-action="NewsDetail">Blog Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
                                             <a asp-controller="Home" asp-action="Team">Team</a>
                                             <ul>
                                                 <li><a asp-controller="Home" asp-action="Team">Team</a></li>
@@ -122,19 +118,10 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#">Pages</a>
-                                            <ul>
-                                                <li><a asp-controller="Home" asp-action="Login">Login</a></li>
-                                                <li><a asp-controller="Home" asp-action="Signup">Sign Up</a></li>
-                                                <li><a asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>
-                                                <li><a asp-controller="Home" asp-action="Tearms">Terms & Condition</a></li>
-                                                <li>
-                                                    <a asp-controller="Home" asp-action="InsuranceForm">Insurance Form</a>
-                                                </li>
-                                                <li><a asp-controller="Home" asp-action="NotFound">Not Found</a></li>
-                                            </ul>
-                                        </li>
+                                        @if(Sname != null)
+                                        {
+                                            <li><a asp-controller="Home" asp-action="InsuranceForm">Insurance</a></li>
+                                        }
                                         <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
                                     </ul>
                                 </div>
@@ -145,7 +132,7 @@
                                 <!-- Phone Btn -->
                                 <div class="phone-box">
                                     <div class="box-inner d-flex">
-                                        @if(accessor.HttpContext.Session.GetString("username") != null)
+                                        @if(Sname != null)
                                         {
                                             <h6 class="px-2">Welcome <br> @ViewBag.sessionuser</h6>
                                             <a class="btn btn-danger d-flex align-items-center px-3 py-2" asp-controller="Home" asp-action="Logout">Logout</a>

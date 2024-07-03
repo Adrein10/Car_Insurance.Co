@@ -119,6 +119,18 @@ namespace Car_Insurance.Co.Controllers
         {
             return View();
         }
+        public IActionResult profile()
+        {
+            return View();
+        }
+        public IActionResult Re_newInsurance()
+        {
+            return View();
+        }
+        public IActionResult ExpiredInsurance()
+        {
+            return View();
+        }
         public IActionResult policy()
         {
             return View();
