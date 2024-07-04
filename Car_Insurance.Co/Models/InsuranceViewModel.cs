@@ -5,5 +5,7 @@
         public UserDetail userDetailTable { get; set; }
         public UserCarsDetail userCarDetail { get; set; }
         public InsurancePolicy insurancePolicyTable { get; set; }
+        public OrderDetail orderDetail { get; set; }
+        public OrderStatus orderStatus { get; set; }
     }
 }

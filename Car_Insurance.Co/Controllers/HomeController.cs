@@ -75,7 +75,9 @@ namespace Car_Insurance.Co.Controllers
             {
                     userDetailTable = new UserDetail(),
                 userCarDetail = new UserCarsDetail(),
-                insurancePolicyTable = new InsurancePolicy()
+                insurancePolicyTable = new InsurancePolicy(),
+                orderDetail=new OrderDetail(),
+                orderStatus = new OrderStatus()
 
             };
             return View(insuranceForm);
@@ -111,14 +113,40 @@ namespace Car_Insurance.Co.Controllers
                     PolicyId = insurance.userCarDetail.PolicyId,
                     Purpose = insurance.userCarDetail.Purpose,
                     Userid = show.Id,
+
+
                 };
+
+
+
+
+                var lastIndexId = context.UserCarsDetails.ToList();
+
+
+
+                var lastIndex = lastIndexId.Count; // Index of the last item
+                var lastItem = lastIndexId[lastIndex-1];
+
+                OrderDetail orderDetail = new OrderDetail()
+                {
+
+                    CarId = lastItem.Id + 1,
+                    StatusId = 1
+                };
+
+
+
                 InsurancePolicy insurancePolicy = new InsurancePolicy()
                 {
                     StartDate = insurance.insurancePolicyTable.StartDate,
                 };
                 insurancePolicy.UserCarsDetails = new List<UserCarsDetail> { userCars };
+
+
                 context.UserCarsDetails.Add(userCars);
                 context.InsurancePolicies.Add(insurancePolicy);
+                context.SaveChanges();
+                context.OrderDetails.Add(orderDetail);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
