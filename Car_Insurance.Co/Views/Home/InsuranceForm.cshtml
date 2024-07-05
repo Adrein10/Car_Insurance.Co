@@ -51,15 +51,14 @@
             <div class="section-icons-outer parallax-scene-2">
                 <div data-depth="0.20" class="icon-layer" style="background-image: url(images/icons/icon-1.png)"></div>
             </div>
+            <form method="post">
             <div class="row clearfix">
                 <!-- Column -->
                 <div class="form-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <h2>Owner Info</h2>
-
                         <!-- Login Form -->
                         <div class="styled-form ">
-                            <form method="post" >
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Enter your Name *</label>
@@ -210,25 +209,16 @@
                                         <div class="radio-box-two">
                                             <input asp-for="orderDetail.PlaneId" type="radio" name="insurance-type" id="type-7" value="3" />
                                             <label for="type-7">
-                                                <strong>Third Party $9000</strong> This is 10% discount
-                                                <span class="radio-two-icon flaticon-hand"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="radio-box-two">
-                                            <input asp-for="orderDetail.PlaneId" type="radio" name="insurance-type" id="type-8" value="4" />
-                                            <label for="type-8">
                                                 <strong>Third Party $3500</strong> This is 10% discount
                                                 <span class="radio-two-icon flaticon-hand"></span>
                                             </label>
                                         </div>
                                     </div>
 
+
                                     <div class="form-group">
                                         <div class="radio-box-two">
-                                            <input asp-for="orderDetail.PlaneId" type="radio" name="insurance-type" id="type-9" value="5" />
+                                            <input asp-for="orderDetail.PlaneId" type="radio" name="insurance-type" id="type-9" value="4" />
                                             <label for="type-9">
                                                 <strong>Terrorism $7500</strong> This is 10% discount
                                                 <span class="radio-two-icon flaticon-hand"></span>
@@ -238,7 +228,7 @@
 
                                     <div class="form-group">
                                         <div class="radio-box-two">
-                                            <input type="radio" name="insurance-type" id="type-10" value="depreciation-waiver-3000" />
+                                            <input asp-for="orderDetail.PlaneId" type="radio" name="insurance-type" id="type-10" value="5" />
                                             <label for="type-10">
                                                 <strong>Depreciation Waiver $3000</strong> This is 10% discount
                                                 <span class="radio-two-icon flaticon-hand"></span>
@@ -249,7 +239,7 @@
 
                         </div>
 
-
+            </form>
                         <!-- Expiry Box -->
                         <div class="expiry-box">
                             <div class="box-inner" style="
