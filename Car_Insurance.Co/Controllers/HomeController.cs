@@ -330,6 +330,14 @@ namespace Car_Insurance.Co.Controllers
             }
             return View();
 		}
+        public IActionResult ThankyouForm()
+        {
+            return View();
+        }
+
+
+
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
