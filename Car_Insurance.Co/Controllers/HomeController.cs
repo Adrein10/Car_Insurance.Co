@@ -78,7 +78,6 @@ namespace Car_Insurance.Co.Controllers
                 insurancePolicyTable = new InsurancePolicy(),
                 orderDetail=new OrderDetail(),
                 orderStatus = new OrderStatus()
-
             };
             return View(insuranceForm);
         }
@@ -131,7 +130,8 @@ namespace Car_Insurance.Co.Controllers
                 {
 
                     CarId = lastItem.Id + 1,
-                    StatusId = 1
+                    StatusId = 1,
+                    PlaneId = insurance.orderDetail.PlaneId
                 };
 
 
