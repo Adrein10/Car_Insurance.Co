@@ -3,6 +3,7 @@ using Car_Insurance.Co.Models;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Car_Insurance.Co.Controllers
 {
@@ -47,7 +48,12 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult insuranceApproval()
         {
-            return View();
+            InsuranceApprovalView approvalView = new InsuranceApprovalView()
+            {
+                cardetail = context.UserCarsDetails.Include(option => option.User).ToList(),
+                orderstatus = new OrderDetail()
+            };
+            return View(approvalView);
         }
 
         public IActionResult insurances()

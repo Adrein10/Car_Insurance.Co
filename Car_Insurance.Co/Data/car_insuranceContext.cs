@@ -200,8 +200,6 @@ namespace Car_Insurance.Co.Data
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Carcc).HasColumnName("carcc");
-
                 entity.Property(e => e.Insurancemonths).HasColumnName("insurancemonths");
 
                 entity.Property(e => e.Planname)

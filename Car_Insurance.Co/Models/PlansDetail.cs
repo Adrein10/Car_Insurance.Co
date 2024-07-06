@@ -12,7 +12,6 @@ namespace Car_Insurance.Co.Models
 
         public int Id { get; set; }
         public string? Planname { get; set; }
-        public long? Carcc { get; set; }
         public long? Insurancemonths { get; set; }
         public long? Price { get; set; }
 

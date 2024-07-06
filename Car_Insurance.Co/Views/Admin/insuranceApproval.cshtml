@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Car_Insurance.Co.Models.InsuranceApprovalView;
+@{
     Layout = "_Admin";
 }
 
@@ -94,7 +95,6 @@
                                     <th>Car Name</th>
                                     <th>Car Model</th>
                                     <th>Car Number</th>
-                                    <th>Car Owner</th>
                                     <th>Engine Number</th>
                                     <th>CC</th>
                                     <th>Plan</th>
@@ -102,21 +102,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in Model.cardetail)
+                                                    {
+                                    
                                 <tr>
-                                    <td>Iphone 5</td>
-                                    <td>iphone5@example.com</td>
-                                    <td>123-456-7890</td>
-                                    <td>*********</td>
-                                    <td>John Doe</td>
-                                    <td>ABC12345</td>
-                                    <td>1500</td>
-                                    <td>1500</td>
+                                     <td> @Html.DisplayFor(modelItem => item.User.Username)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Carname)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Carmodel)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Carnumber)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Enginenumber)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Carrcc)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.OrderDetails)</td>
                                     <td>
                                         <div class="status-select">
                                             <span class="badge badge-warning status px-4 py-2">Pending</span>
                                         </div>
                                     </td>
                                 </tr>
+                                }
                                 <!-- Add more <tr> for each insurance request -->
                             </tbody>
                         </table>

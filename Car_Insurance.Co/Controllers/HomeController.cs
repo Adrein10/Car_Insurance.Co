@@ -84,6 +84,7 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
         public IActionResult InsuranceForm(InsuranceViewModel insurance,UserDetail user)
         {
+
             var Ishow = context.UserDetails.Where(option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
             if (Ishow != null)
             {
