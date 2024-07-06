@@ -112,8 +112,12 @@
                                         <td> @Html.DisplayFor(modelItem => item.Carnumber)</td>
                                         <td> @Html.DisplayFor(modelItem => item.Enginenumber)</td>
                                         <td> @Html.DisplayFor(modelItem => item.Carrcc)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.OrderDetails)</td>
-                                    <td>
+                                        @foreach (var orderDetail in Model.orderdetail)
+                                        {
+                                            <td>@Html.DisplayFor(modelItem => orderDetail.Plane.Planname)</td>
+
+                                        }
+                                        <td>
                                         <div class="status-select">
                                             <span class="badge badge-warning status px-4 py-2">Pending</span>
                                         </div>
