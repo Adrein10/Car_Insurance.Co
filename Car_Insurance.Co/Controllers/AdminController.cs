@@ -50,11 +50,14 @@ namespace Car_Insurance.Co.Controllers
         {
             InsuranceApprovalView approvalView = new InsuranceApprovalView()
             {
-                orderdetail = context.OrderDetails.ToList(),
                 cardetail = context.UserCarsDetails.Include(option => option.User).Include(option => option.OrderDetails).ThenInclude(OrderDetail => OrderDetail.Plane).ToList(),
                 orderstatus = new OrderDetail()
             };
             return View(approvalView);
+        }
+        public IActionResult EditStatus(int id,OrderDetail order)
+        {
+            return RedirectToAction("insuranceApproval");
         }
 
         public IActionResult insurances()

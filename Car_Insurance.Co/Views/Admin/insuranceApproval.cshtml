@@ -102,27 +102,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.cardetail)
-                                                    {
-                                    
-                                <tr>
-                                     <td> @Html.DisplayFor(modelItem => item.User.Username)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Carname)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Carmodel)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Carnumber)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Enginenumber)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Carrcc)</td>
-                                        @foreach (var orderDetail in Model.orderdetail)
-                                        {
+                                @foreach (var carDetail in Model.cardetail)
+                                {
+                                    foreach (var orderDetail in carDetail.OrderDetails)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => carDetail.User.Username)</td>
+                                            <td>@Html.DisplayFor(modelItem => carDetail.Carname)</td>
+                                            <td>@Html.DisplayFor(modelItem => carDetail.Carmodel)</td>
+                                            <td>@Html.DisplayFor(modelItem => carDetail.Carnumber)</td>
+                                            <td>@Html.DisplayFor(modelItem => carDetail.Enginenumber)</td>
+                                            <td>@Html.DisplayFor(modelItem => carDetail.Carrcc)</td>
                                             <td>@Html.DisplayFor(modelItem => orderDetail.Plane.Planname)</td>
-
-                                        }
-                                        <td>
-                                        <div class="status-select">
-                                            <span class="badge badge-warning status px-4 py-2">Pending</span>
-                                        </div>
-                                    </td>
-                                </tr>
+                                            <td>
+                                                <a asp-controller="Admin" asp-action="EditStatus" asp-route-id="@carDetail.Id" class="status-select">
+                                                    <span class="badge badge-warning status px-4 py-2">Pending</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
                                 }
                                 <!-- Add more <tr> for each insurance request -->
                             </tbody>
