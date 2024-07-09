@@ -1,5 +1,7 @@
 ﻿using Car_Insurance.Co.Data;
 using Car_Insurance.Co.Models;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -79,6 +81,8 @@ namespace Car_Insurance.Co.Controllers
                 orderDetail=new OrderDetail(),
                 orderStatus = new OrderStatus()
             };
+
+            
             return View(insuranceForm);
         }
         [HttpPost]
@@ -117,7 +121,18 @@ namespace Car_Insurance.Co.Controllers
 
                 };
 
-
+                accessor.HttpContext.Session.SetString("policyNo", Convert.ToString(userCars.PolicyId));
+                accessor.HttpContext.Session.SetString("carName", userCars.Carname);
+                
+                accessor.HttpContext.Session.SetString("carNumber", userCars.Carnumber);
+                accessor.HttpContext.Session.SetString("chesisNumber", userCars.Chasisnumber);
+                accessor.HttpContext.Session.SetString("city", userCars.City);
+                accessor.HttpContext.Session.SetString("purpose", userCars.Purpose);
+                accessor.HttpContext.Session.SetString("carcolor", userCars.Carcolor);
+                accessor.HttpContext.Session.SetString("Carmodel", Convert.ToString(userCars.Carmodel));
+                accessor.HttpContext.Session.SetString("carEngine", userCars.Enginenumber);
+                accessor.HttpContext.Session.SetString("Carcc", Convert.ToString(userCars.Carrcc));
+                
 
 
                 var lastIndexId = context.UserCarsDetails.ToList();
@@ -143,13 +158,14 @@ namespace Car_Insurance.Co.Controllers
                 };
                 insurancePolicy.UserCarsDetails = new List<UserCarsDetail> { userCars };
 
+                accessor.HttpContext.Session.SetString("date",Convert.ToString(insurancePolicy.StartDate));
 
                 context.UserCarsDetails.Add(userCars);
                 context.InsurancePolicies.Add(insurancePolicy);
                 context.SaveChanges();
                 context.OrderDetails.Add(orderDetail);
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("BillingInfo");
             }
             else
             {

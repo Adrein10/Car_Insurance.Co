@@ -1,6 +1,20 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor;
+@model Car_Insurance.Co.Models.InsuranceViewModel
 @{
     ViewData["Title"] = "BillingInfo";
+    var carcc = accessor.HttpContext.Session.GetString("Carcc");
+    var carcolor = accessor.HttpContext.Session.GetString("carcolor");
+    var date = accessor.HttpContext.Session.GetString("date");
+    var UserName = accessor.HttpContext.Session.GetString("username");
+    var UserEmail = accessor.HttpContext.Session.GetString("useremail");
+    var PolicyNo = accessor.HttpContext.Session.GetString("policyNo");
+    var carEngine = accessor.HttpContext.Session.GetString("carEngine");
+    var Carmodel = accessor.HttpContext.Session.GetString("Carmodel");
+    var purpose = accessor.HttpContext.Session.GetString("purpose");
+    var city = accessor.HttpContext.Session.GetString("city");
+    var chesisNumber = accessor.HttpContext.Session.GetString("chesisNumber");
+    var carNumber = accessor.HttpContext.Session.GetString("carNumber");
+    var carName = accessor.HttpContext.Session.GetString("carName");
 }
 
 
@@ -83,9 +97,11 @@
        
         <h2>Insurance Policy</h2>
         <div class="policy-details">
-            <p><strong>Policy Number:</strong> [Unique Policy Number]</p>
-            <p><strong>Policyholder:</strong> [Customer's Name]</p>
-            <p><strong>Insured Vehicle:</strong> [Details of the insured vehicle including make, model, registration number]</p>
+           
+            <p><strong>Policy Number:</strong> @PolicyNo</p>
+        <p><strong>Policy holder:</strong> @UserName</p>
+        <p><strong>Policy holder Email:</strong> @UserEmail</p>
+            <p><strong>Insured Vehicle:</strong> @carName</p>
             <p><strong>Effective Date:</strong> [Date from which the policy is valid]</p>
             <p><strong>Expiry Date:</strong> [Date until which the policy remains valid]</p>
         </div>
