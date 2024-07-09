@@ -123,9 +123,8 @@ namespace Car_Insurance.Co.Controllers
 
                 accessor.HttpContext.Session.SetString("policyNo", Convert.ToString(userCars.PolicyId));
                 accessor.HttpContext.Session.SetString("carName", userCars.Carname);
-                
                 accessor.HttpContext.Session.SetString("carNumber", userCars.Carnumber);
-                accessor.HttpContext.Session.SetString("chesisNumber", userCars.Chasisnumber);
+                //accessor.HttpContext.Session.SetString("chesisNumber", userCars.Chasisnumber);
                 accessor.HttpContext.Session.SetString("city", userCars.City);
                 accessor.HttpContext.Session.SetString("purpose", userCars.Purpose);
                 accessor.HttpContext.Session.SetString("carcolor", userCars.Carcolor);
@@ -141,6 +140,7 @@ namespace Car_Insurance.Co.Controllers
 
                 var lastIndex = lastIndexId.Count; // Index of the last item
                 var lastItem = lastIndexId[lastIndex-1];
+             
 
                 OrderDetail orderDetail = new OrderDetail()
                 {
@@ -150,8 +150,7 @@ namespace Car_Insurance.Co.Controllers
                     PlaneId = insurance.orderDetail.PlaneId
                 };
 
-
-
+         
                 InsurancePolicy insurancePolicy = new InsurancePolicy()
                 {
                     StartDate = insurance.insurancePolicyTable.StartDate,
