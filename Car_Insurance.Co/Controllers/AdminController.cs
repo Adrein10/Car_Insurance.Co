@@ -55,10 +55,32 @@ namespace Car_Insurance.Co.Controllers
             };
             return View(approvalView);
         }
-        public IActionResult EditStatus(int id,OrderDetail order)
+        public IActionResult EditStatus(int id, OrderDetail updatedOrder)
         {
+            var orderToUpdate = context.UserCarsDetails
+                                       .Include(option => option.OrderDetails)
+                                       .FirstOrDefault(context => context.Id == id);
+
+            if (orderToUpdate != null)
+            {
+                // Assuming OrderDetails is a collection, find the specific OrderDetail to update
+                var orderDetailToUpdate = orderToUpdate.OrderDetails.FirstOrDefault();
+
+                if (orderDetailToUpdate != null)
+                {
+                    // Update the status
+                    orderDetailToUpdate.StatusId = 2;
+                    context.OrderDetails.Update(orderDetailToUpdate);
+
+                    // Save changes
+                    context.SaveChanges();
+                }
+            }
+
+            // Redirect to insuranceApproval action
             return RedirectToAction("insuranceApproval");
         }
+
 
         public IActionResult insurances()
         {

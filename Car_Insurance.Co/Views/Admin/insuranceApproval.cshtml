@@ -115,9 +115,15 @@
                                             <td>@Html.DisplayFor(modelItem => carDetail.Carrcc)</td>
                                             <td>@Html.DisplayFor(modelItem => orderDetail.Plane.Planname)</td>
                                             <td>
-                                                <a asp-controller="Admin" asp-action="EditStatus" asp-route-id="@carDetail.Id" class="status-select">
-                                                    <span class="badge badge-warning status px-4 py-2">Pending</span>
-                                                </a>
+                                                @if(orderDetail.StatusId == 1)
+                                                {
+                                                    <a asp-controller="Admin" asp-action="EditStatus" asp-route-id="@carDetail.Id" class="status-select">
+                                                        <span class="badge badge-warning status px-4 py-2">Pending</span>
+                                                    </a>
+                                                }else
+                                                {
+                                                    <span class="badge badge-success px-4 py-2">Approved</span>
+                                                }
                                             </td>
                                         </tr>
                                     }
