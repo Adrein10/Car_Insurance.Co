@@ -1,6 +1,8 @@
 ﻿using Car_Insurance.Co.Data;
 using Car_Insurance.Co.Models;
 
+using Humanizer;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -147,10 +149,56 @@ namespace Car_Insurance.Co.Controllers
             }
             return View();
         }
-		public IActionResult AdminInfo()
+
+        public IActionResult AdminInfo()
         {
-            return View();
+            var show = context.AdminDetails.ToList();
+            return View(show);
         }
+        public IActionResult AdminInfoUpdate(int id)
+        {
+            var show = context.AdminDetails.Find(id);
+            return View(show);
+        }
+        [HttpPost]
+        public IActionResult AdminInfoUpdate(AdminDetail admin, int id)
+        {
+           
+                var update = context.AdminDetails.Find(id);
+                if(update != null)
+            {
+               update.AdminName = admin.AdminName;
+                update.AdminEmail = admin.AdminEmail;
+                update.AdminPassword = admin.AdminPassword;
+                update.RegisterDate = admin.RegisterDate;
+            
+                context.AdminDetails.Update(update);
+                context.SaveChanges();
+                return RedirectToAction("AdminInfo");
+            }
+            else
+            {
+                ViewBag.failed = "Incorrect User Or Password";
+            }
+
+            return View();
+            }
+
+        public IActionResult AdminInfoDelete(int id)
+        {
+            var admin = context.AdminDetails.Find(id);
+            if (admin == null)
+            {
+                return NotFound();
+            }
+
+            context.AdminDetails.Remove(admin);
+            context.SaveChanges();
+
+            return RedirectToAction("AdminInfo");
+        }
+
+
         public IActionResult profile()
         {
             return View();
