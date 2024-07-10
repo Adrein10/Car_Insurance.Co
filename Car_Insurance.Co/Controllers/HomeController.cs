@@ -88,7 +88,7 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
         public IActionResult InsuranceForm(InsuranceViewModel insurance,UserDetail user)
         {
-
+            // for login by services
             var Ishow = context.UserDetails.Where(option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
             if (Ishow != null)
             {
@@ -101,9 +101,12 @@ namespace Car_Insurance.Co.Controllers
             {
                 ViewBag.failed = "Incorrect User Or Password";
             }
+            // tolist with multiple table
             var show = context.UserDetails.Where(option => option.Useremail == insurance.userDetailTable.Useremail && option.Userpassword == insurance.userDetailTable.Userpassword).FirstOrDefault();
-            if(show != null)
+            //For password varification
+            if (show != null)
             {
+                // Adding Cardetail with user
                 UserCarsDetail userCars = new UserCarsDetail()
                 {
                     Carcolor = insurance.userCarDetail.Carcolor,
@@ -121,7 +124,7 @@ namespace Car_Insurance.Co.Controllers
 
                 };
 
-                accessor.HttpContext.Session.SetString("policyNo", Convert.ToString(userCars.PolicyId));
+                // For Billing Page
                 accessor.HttpContext.Session.SetString("carName", userCars.Carname);
                 accessor.HttpContext.Session.SetString("carNumber", userCars.Carnumber);
                 //accessor.HttpContext.Session.SetString("chesisNumber", userCars.Chasisnumber);
@@ -131,17 +134,19 @@ namespace Car_Insurance.Co.Controllers
                 accessor.HttpContext.Session.SetString("Carmodel", Convert.ToString(userCars.Carmodel));
                 accessor.HttpContext.Session.SetString("carEngine", userCars.Enginenumber);
                 accessor.HttpContext.Session.SetString("Carcc", Convert.ToString(userCars.Carrcc));
-                
 
 
+                // For orderdetail info
                 var lastIndexId = context.UserCarsDetails.ToList();
 
 
 
                 var lastIndex = lastIndexId.Count; // Index of the last item
-                var lastItem = lastIndexId[lastIndex-1];
-             
+                var lastItem = lastIndexId[lastIndex - 1];
 
+                var policynumber = lastItem.PolicyId + 1100;
+                var totalpolicy = policynumber;
+                accessor.HttpContext.Session.SetString("policyNo", Convert.ToString(totalpolicy));
                 OrderDetail orderDetail = new OrderDetail()
                 {
 
@@ -149,19 +154,18 @@ namespace Car_Insurance.Co.Controllers
                     StatusId = 1,
                     PlaneId = insurance.orderDetail.PlaneId
                 };
-
-         
                 InsurancePolicy insurancePolicy = new InsurancePolicy()
                 {
                     StartDate = insurance.insurancePolicyTable.StartDate,
                 };
                 insurancePolicy.UserCarsDetails = new List<UserCarsDetail> { userCars };
 
-                accessor.HttpContext.Session.SetString("date",Convert.ToString(insurancePolicy.StartDate));
+                accessor.HttpContext.Session.SetString("date", Convert.ToString(insurancePolicy.StartDate));
 
                 context.UserCarsDetails.Add(userCars);
                 context.InsurancePolicies.Add(insurancePolicy);
                 context.SaveChanges();
+                // for Adding orderdetail After save changes
                 context.OrderDetails.Add(orderDetail);
                 context.SaveChanges();
                 return RedirectToAction("BillingInfo");
@@ -227,8 +231,11 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
         public IActionResult Signup(UserDetail user,string ConfirmPassword)
         {
+            // For Validation
             var name = context.UserDetails.Where(option => option.Username == user.Username).FirstOrDefault();
             var email = context.UserDetails.Where(option => option.Useremail == user.Useremail).FirstOrDefault();
+
+            //For signup Errors And Registration
             if(name != null && email != null)
             {
                 ViewBag.uniquename = "The name you entered is already exist";
@@ -257,6 +264,7 @@ namespace Car_Insurance.Co.Controllers
             }
             return View();
         }
+        // For Login and Session
         public IActionResult Login()
         {
             var username = accessor.HttpContext.Session.GetString("username");
@@ -270,6 +278,7 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
         public IActionResult Login(UserDetail user)
         {
+            //For Login
             var show = context.UserDetails.Where( option => option.Useremail == user.Useremail || option.Username == user.Useremail && option.Userpassword == user.Userpassword).FirstOrDefault();
             if (show != null)
             {
@@ -285,6 +294,7 @@ namespace Car_Insurance.Co.Controllers
            
             return View();
         }
+        // For session destroy
         public IActionResult Logout()
         {
             var user = accessor.HttpContext.Session.GetString("username");
@@ -348,6 +358,12 @@ namespace Car_Insurance.Co.Controllers
 		}
         public IActionResult ThankyouForm()
         {
+            var username = accessor.HttpContext.Session.GetString("username");
+            if (username != null)
+            {
+                ViewBag.sessionuser = username;
+                return View();
+            }
             return View();
         }
 
