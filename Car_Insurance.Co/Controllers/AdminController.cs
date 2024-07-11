@@ -21,6 +21,9 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Index()
         {
+            //var showcount = context.AdminDetails.Count();
+            
+            //ViewBag.Showcount = showcount;
             return View();
         }
 
