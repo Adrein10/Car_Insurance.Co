@@ -29,12 +29,16 @@
                             <table class="table align-items-center table-flush table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>Product</th>
-                                        <th>Photo</th>
-                                        <th>Product ID</th>
-                                        <th>Amount</th>
-                                        <th>Date</th>
-                                        <th>Shipping</th>
+                                        <th>Id</th>
+                                        <th>Customer</th>
+                                        <th>Car Name</th>
+                                        <th>Car CC</th>
+                                        <th>Car Number</th>
+                                        <th>Car Color</th>
+                                        <th>Car Purpose</th>
+                                        <th>Engine Number</th>
+                                        <th>City</th>
+                                        <th>Car Model</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,15 +46,15 @@
                                     {
                                         <tr>
                                             <td>@item.Id</td>
+                                            <td>@item.User.Username</td>
                                             <td>@item.Carname</td>
                                             <td>@item.Carrcc</td>
                                             <td>@item.Carnumber</td>
-                                            <td>03 Aug 2017</td>
-                                            <td>
-                                                <div class="progress shadow" style="height: 3px;">
-                                                    <div class="progress-bar" role="progressbar" style="width: 90%"></div>
-                                                </div>
-                                            </td>
+                                            <td>@item.Carcolor</td>
+                                            <td>@item.Purpose</td>
+                                            <td>@item.Enginenumber</td>
+                                            <td>@item.City</td>
+                                            <td>@item.Carmodel</td>
                                         </tr>
                                     }
 
