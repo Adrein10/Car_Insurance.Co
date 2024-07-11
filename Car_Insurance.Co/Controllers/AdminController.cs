@@ -21,9 +21,23 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Index()
         {
-            //var showcount = context.AdminDetails.Count();
-            
-            //ViewBag.Showcount = showcount;
+            var showcount = context.AdminDetails.Count();
+            ViewBag.Showcount = showcount;
+            var showCust = context.UserDetails.Count();
+            ViewBag.ShowCust = showCust;
+            var showvehicle = context.UserCarsDetails.Count();
+            ViewBag.ShowVehicle = showvehicle;
+
+            //var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            //var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            //if(SAdminname != null || SCeoname != null)
+            //{
+            //    return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Login");
+            //}
             return View();
         }
 
@@ -99,6 +113,7 @@ namespace Car_Insurance.Co.Controllers
         public IActionResult login(AdminDetail admin)
         {
             var show = context.AdminDetails.Where(option => option.AdminName == admin.AdminName || option.AdminEmail == admin.AdminName && option.AdminPassword == admin.AdminPassword).FirstOrDefault();
+            var ceo = context.CeoDetails.Where(option => option.CeoEmail == admin.AdminName || option.CeoName == admin.AdminName && option.CeoPassword == admin.AdminPassword).FirstOrDefault();
           
             if(show != null)
             {
@@ -107,6 +122,12 @@ namespace Car_Insurance.Co.Controllers
                 accessor.HttpContext.Session.SetString("adminpass", show.AdminPassword);
                 accessor.HttpContext.Session.SetString("adminid", Convert.ToString(show.Id));
                 return RedirectToAction("Index");
+            }else if(ceo != null)
+            {
+                accessor.HttpContext.Session.SetString("ceoname", ceo.CeoName);
+                accessor.HttpContext.Session.SetString("ceoemail", ceo.CeoEmail);
+                accessor.HttpContext.Session.SetString("ceopass", ceo.CeoPassword);
+                accessor.HttpContext.Session.SetString("ceoid", Convert.ToString(ceo.Id));
             }
             else
             {
@@ -218,6 +239,12 @@ namespace Car_Insurance.Co.Controllers
             
             return View();
         }
+        public IActionResult Mails()
+        {
+            
+            return View();
+        }
+
         public IActionResult Re_newInsurance()
         {
             return View();
