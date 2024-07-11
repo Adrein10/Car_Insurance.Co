@@ -62,7 +62,8 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult vehicalInfo()
         {
-            return View();
+            var show = context.UserCarsDetails.Include(option => option.User).ToList();
+            return View(show);
         }
 
         public IActionResult insuranceApproval()
