@@ -1,4 +1,10 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor;
+@{
+    var adminname = accessor.HttpContext.Session.GetString("adminname");
+    var adminemail = accessor.HttpContext.Session.GetString("adminemail");
+    var adminid = accessor.HttpContext.Session.GetString("adminid");
+}
+@{
     Layout = "_Admin";
 }
 @{
@@ -15,7 +21,7 @@
                     </div>
                     <div class="card-body pt-5">
                         <img src="https://via.placeholder.com/110x110" alt="profile-image" class="profile">
-                        <h5 class="card-title">Mark Stern loremdifjseoif</h5>
+                        <h5 class="card-title">@adminname</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div class="icon-block">
                             <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -31,8 +37,8 @@
                             </div>
                             <div class="media-body text-left ml-3">
 
-                                <p>Designition  <span class="float-right"><a href="#"><i class="fa-regular fa-pen-to-square"></i></a></span></p>
-                                <h6>loremdfdfee</h6>
+                                <p>AdminId <span class="float-right"><a href="#"><i class="fa-regular fa-pen-to-square"></i></a></span></p>
+                                <h6>@adminid</h6>
 
                             </div>
                         </div>
@@ -44,7 +50,7 @@
                             <div class="media-body text-left ml-3">
                                 <div class="progress-wrapper">
                                     <p>Email <span class="float-right"><i class="fa-regular fa-pen-to-square"></i></span></p>
-                                    <h6>lorem@gmail.com</h6>
+                                    <h6>@adminemail</h6>
                                 </div>
                             </div>
                         </div>

@@ -96,8 +96,13 @@ namespace Car_Insurance.Co.Controllers
         public IActionResult login(AdminDetail admin)
         {
             var show = context.AdminDetails.Where(option => option.AdminName == admin.AdminName || option.AdminEmail == admin.AdminName && option.AdminPassword == admin.AdminPassword).FirstOrDefault();
+          
             if(show != null)
             {
+                accessor.HttpContext.Session.SetString("adminname", show.AdminName);
+                accessor.HttpContext.Session.SetString("adminemail", show.AdminEmail);
+                accessor.HttpContext.Session.SetString("adminpass", show.AdminPassword);
+                accessor.HttpContext.Session.SetString("adminid", Convert.ToString(show.Id));
                 return RedirectToAction("Index");
             }
             else
@@ -108,7 +113,13 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult logout()
         {
-            return View();
+            var admin = accessor.HttpContext.Session.GetString("adminname");
+            if (admin != null)
+            {
+                accessor.HttpContext.Session.Clear();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("notfound");
         }
 
         public IActionResult RegisterAdmin()
@@ -201,6 +212,7 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult profile()
         {
+            
             return View();
         }
         public IActionResult Re_newInsurance()
