@@ -24,6 +24,7 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult Index()
         {
+            //sessions
             var username = accessor.HttpContext.Session.GetString("username");
             if(username != null)
             {
@@ -158,6 +159,8 @@ namespace Car_Insurance.Co.Controllers
                 {
                     StartDate = insurance.insurancePolicyTable.StartDate,
                 };
+                // policy date session
+                accessor.HttpContext.Session.SetString("policyStart",insurance.insurancePolicyTable.StartDate.ToString());
                 insurancePolicy.UserCarsDetails = new List<UserCarsDetail> { userCars };
 
                 accessor.HttpContext.Session.SetString("date", Convert.ToString(insurancePolicy.StartDate));
@@ -348,13 +351,17 @@ namespace Car_Insurance.Co.Controllers
 
 		public IActionResult BillingInfo()
 		{
+            var cardata = accessor.HttpContext.Session.GetString("carName");
             var username = accessor.HttpContext.Session.GetString("username");
-            if (username != null)
+            if (username != null && cardata != null)
             {
                 ViewBag.sessionuser = username;
                 return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("NotFound");
+            }
 		}
         public IActionResult ThankyouForm()
         {
@@ -364,7 +371,10 @@ namespace Car_Insurance.Co.Controllers
                 ViewBag.sessionuser = username;
                 return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("NotFound");
+            }
         }
 
 
