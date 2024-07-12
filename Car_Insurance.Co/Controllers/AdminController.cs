@@ -43,8 +43,12 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult customerDetails()
         {
+            var showCust = context.UserDetails.Count();
+            ViewBag.ShowCust = showCust;
+
             var show = context.UserDetails.ToList();
             return View(show);
+           
         }
         [HttpPost]
         public IActionResult CustomerDelete(int id)
@@ -129,6 +133,7 @@ namespace Car_Insurance.Co.Controllers
                 accessor.HttpContext.Session.SetString("ceoemail", ceo.CeoEmail);
                 accessor.HttpContext.Session.SetString("ceopass", ceo.CeoPassword);
                 accessor.HttpContext.Session.SetString("ceoid", Convert.ToString(ceo.Id));
+                return RedirectToAction("Index");
             }
             else
             {
@@ -142,9 +147,9 @@ namespace Car_Insurance.Co.Controllers
             if (admin != null)
             {
                 accessor.HttpContext.Session.Clear();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
-            return RedirectToAction("notfound");
+            return RedirectToAction("Login");
         }
 
         public IActionResult RegisterAdmin()
@@ -188,6 +193,9 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult AdminInfo()
         {
+            var showcount = context.AdminDetails.Count();
+            ViewBag.Showcount = showcount;
+
             var show = context.AdminDetails.ToList();
             return View(show);
         }

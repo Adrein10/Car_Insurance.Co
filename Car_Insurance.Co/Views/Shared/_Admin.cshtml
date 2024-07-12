@@ -2,6 +2,8 @@
 @{
     var adminname = accessor.HttpContext.Session.GetString("adminname");
     var adminemail = accessor.HttpContext.Session.GetString("adminemail");
+    var ceoname = accessor.HttpContext.Session.GetString("ceoname");
+    var ceoemail = accessor.HttpContext.Session.GetString("ceoemail");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -98,31 +100,36 @@
                         <i class="zmdi zmdi-alert-polygon"></i> <span>Expired Insurance Details</span>
                     </a>
                 </li>
+                @if(ceoname != null)
+                {
+                    <li>
+                        <a asp-controller="Admin" asp-action="AdminInfo">
+                            <i class="zmdi zmdi-alert-polygon"></i> <span>Admins</span>
+                        </a>
+                    </li>
+                }
 
                 <li class="sidebar-header">ADMIN DETAILS</li>
-
                 <li>
-                    <a asp-controller="Admin" asp-action="profile">
-                        <i class="zmdi zmdi-face"></i> <span>Profile</span>
-                    </a>
-                </li> 
+                        <a asp-controller="Admin" asp-action="profile">
+                            <i class="zmdi zmdi-face"></i> <span>Profile</span>
+                        </a>
+                </li>
+                
+                
                 <li>
                     <a asp-controller="Admin" asp-action="Mails">
                         <i class="zmdi zmdi-face"></i> <span>Mails</span>
                     </a>
                 </li>
-
-                <li>
-                    <a asp-controller="Admin" asp-action="RegisterAdmin"  >
-                        <i class="zmdi zmdi-account-add"></i> <span>Register Admin</span>
-                    </a>
-                </li>
-                 
-                <li>
-                    <a asp-controller="Admin" asp-action="RegisterAdmin"  >
-                        <i class="zmdi zmdi-account-add"></i> <span>Ceo</span>
-                    </a>
-                </li>
+                @if(ceoname != null)
+                {
+                    <li>
+                        <a asp-controller="Admin" asp-action="RegisterAdmin">
+                            <i class="zmdi zmdi-account-add"></i> <span>Register Admin</span>
+                        </a>
+                    </li>
+                }
 
 
 @*              <li>
@@ -132,13 +139,12 @@
                 </li> *@
                 
                 <li>
-                    @if(adminname != null)
+                    @if (adminname != null || ceoname != null)
                     {
                         <a asp-controller="Admin" asp-action="Logout">
                             <i class="icon-power mr-2"></i> <span>Logout</span>
                         </a>
-                    }
-                    else
+                    }else
                     {
                         <a asp-controller="Admin" asp-action="Login" >
                             <i class="icon-power mr-2"></i> <span>Login</span>
@@ -214,7 +220,31 @@
                             <li class="dropdown-divider"></li>
                             <li class="dropdown-divider"></li>
                                 <li class="dropdown-item"><a asp-controller="Admin" asp-action="Logout"><i class="icon-power mr-2"></i> Logout</a></li>
-                                            }
+                            }
+                            else if (ceoname != null)
+                                {
+                                    <li class="dropdown-item user-details">
+                                        <a href="javascript:void();">
+                                            <div class="media">
+                                                <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+                                                <div class="media-body">
+
+                                                    <h6 class="mt-2 user-title">@ceoname</h6>
+                                                    <p class="user-subtitle">@ceoemail</p>
+
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-item"><a asp-controller="Admin" asp-action="Profile"><i class="icon-wallet mr-2"></i> Your Profile</a></li>
+                                    <li class="dropdown-item"><a asp-controller="Admin" asp-action="Mails"><i class="icon-wallet mr-2"></i> Inbox</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li class="dropdown-item"><a asp-controller="Admin" asp-action="Logout"><i class="icon-power mr-2"></i> Logout</a></li>
+                                }
                                             else
                                             {
                                 <li class="dropdown-item"> <a asp-controller="Admin" asp-action="Login"> <i class="icon-power mr-2"></i> login</a></li>
