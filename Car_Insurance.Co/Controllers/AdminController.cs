@@ -27,7 +27,12 @@ namespace Car_Insurance.Co.Controllers
             ViewBag.ShowCust = showCust;
             var showvehicle = context.UserCarsDetails.Count();
             ViewBag.ShowVehicle = showvehicle;
-
+            var finddata = context.UserCarsDetails
+                .Include(option => option.User)
+                .Include(option => option.Policy)
+                .Include(option => option.OrderDetails)
+                .ThenInclude(OrderDetail => OrderDetail.Plane)
+                .ToList();
             //var SAdminname = accessor.HttpContext.Session.GetString("adminname");
             //var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
             //if(SAdminname != null || SCeoname != null)
@@ -38,7 +43,7 @@ namespace Car_Insurance.Co.Controllers
             //{
             //    return RedirectToAction("Login");
             //}
-            return View();
+            return View(finddata);
         }
 
         public IActionResult customerDetails()
