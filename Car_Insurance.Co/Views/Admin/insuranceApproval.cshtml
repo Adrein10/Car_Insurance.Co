@@ -155,17 +155,18 @@
                     }, 500); // Replace with actual AJAX call
 
                     // Optionally, update the status on the server using AJAX
-                    // $.ajax({
-                    //     url: statusBadge.closest('a').attr('href'),
-                    //     method: 'POST',
-                    //     success: function () {
-                    //         // On success, update UI
-                    //         statusBadge.removeClass('badge-warning').addClass('badge-success').text('Approved');
-                    //     },
-                    //     error: function () {
-                    //         alert('Failed to update status. Please try again.');
-                    //     }
-                    // });
+
+                    $.ajax({
+                        url: statusBadge.closest('a').attr('href'),
+                        method: 'POST',
+                        success: function () {
+                            // On success, update UI
+                            statusBadge.removeClass('badge-warning').addClass('badge-success').text('Approved');
+                        },
+                        error: function () {
+                            alert('Failed to update status. Please try again.');
+                        }
+                    });
                 }
             }
         });

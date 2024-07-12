@@ -79,12 +79,11 @@ namespace Car_Insurance.Co.Controllers
             };
             return View(approvalView);
         }
-        public IActionResult EditStatus(int id, OrderDetail updatedOrder)
+        public IActionResult EditStatus(int id)
         {
             var orderToUpdate = context.UserCarsDetails
                                        .Include(option => option.OrderDetails)
                                        .FirstOrDefault(context => context.Id == id);
-
             if (orderToUpdate != null)
             {
                 // Assuming OrderDetails is a collection, find the specific OrderDetail to update
