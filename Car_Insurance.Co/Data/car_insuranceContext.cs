@@ -21,6 +21,7 @@ namespace Car_Insurance.Co.Data
         public virtual DbSet<CeoDetail> CeoDetails { get; set; } = null!;
         public virtual DbSet<ClaimInsurance> ClaimInsurances { get; set; } = null!;
         public virtual DbSet<ClaimStatus> ClaimStatuses { get; set; } = null!;
+        public virtual DbSet<Feedback> Feedbacks { get; set; } = null!;
         public virtual DbSet<InsurancePolicy> InsurancePolicies { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<OrderStatus> OrderStatuses { get; set; } = null!;
@@ -128,6 +129,27 @@ namespace Car_Insurance.Co.Data
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("status_name");
+            });
+
+            modelBuilder.Entity<Feedback>(entity =>
+            {
+                entity.HasKey(e => e.MessageId);
+
+                entity.ToTable("Feedback");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Message).IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Subject)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<InsurancePolicy>(entity =>

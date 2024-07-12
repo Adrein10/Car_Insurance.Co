@@ -15,6 +15,7 @@
     var chesisNumber = accessor.HttpContext.Session.GetString("chesisNumber");
     var carNumber = accessor.HttpContext.Session.GetString("carNumber");
     var carName = accessor.HttpContext.Session.GetString("carName");
+    var startdate = accessor.HttpContext.Session.GetString("policyStart");
 }
 
 
@@ -86,13 +87,13 @@
         }
     </style>
 
-    <div class="download-section">
-        <p>
-            <a asp-controller="Home" asp-action="ThankyouForm" id="downloadLink">
-                <i class="fa fa-download"></i> Download Insurance Policy PDF
-            </a>
-        </p>
-    </div>
+<div class="download-section">
+    <p>
+        <a asp-controller="Home" asp-action="ThankyouForm" id="downloadLink">
+            <i class="fa fa-download"></i> Download Insurance Policy PDF
+        </a>
+    </p>
+</div>
     <div id="contentToConvert" class="container1">
        
         <h2>Insurance Policy</h2>
@@ -102,14 +103,14 @@
         <p><strong>Policy holder:</strong> @UserName</p>
         <p><strong>Policy holder Email:</strong> @UserEmail</p>
             <p><strong>Insured Vehicle:</strong> @carName</p>
-            <p><strong>Effective Date:</strong> [Date from which the policy is valid]</p>
-            <p><strong>Expiry Date:</strong> [Date until which the policy remains valid]</p>
+            <p><strong>Effective Date:</strong>@startdate</p>
+            <p><strong>Expiry Date:</strong>One Year</p>
         </div>
         <div class="coverage-details">
             <p><strong>Coverage Details:</strong></p>
             <p><strong>Third Party Liability:</strong> [Coverage details]</p>
             <p><strong>Comprehensive Coverage:</strong> [Coverage details]</p>
-            <p><strong>Amount paid:</strong> </p>
+            <p><strong>Amount paid:</strong>Amount</p>
             <p><strong>Deductible:</strong> [If applicable]</p>
         </div>
         <div class="terms-conditions">
@@ -126,11 +127,20 @@
             <p><strong>Authorized Signature:</strong> [Signature]</p>
         </div>
     </div>
-    <script>
-        document.getElementById('downloadLink').addEventListener('click', function () {
+<!-- Content to convert into PDF -->
+<div id="contentToConvert">
+    <h1>Insurance Policy</h1>
+    <p>This is your insurance policy details...</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('downloadLink').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior (e.g., navigating to a new page)
+
             var element = document.getElementById('contentToConvert');
 
-            // Define options for the PDF generation
             var opt = {
                 margin: 1,
                 filename: 'InsurancePolicy.pdf',
@@ -139,11 +149,15 @@
                 jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
 
-            // Use html2pdf.js to generate PDF
-            html2pdf().set(opt).from(element).save();
+            // Generate PDF from element and trigger download
+            html2pdf().set(opt).from(element).save().then(function () {
+                // Optional: Redirect to ASP.NET Core action after PDF is generated
+                window.location.href = '@Url.Action("ThankyouForm", "Home")';
+            }).catch(function (error) {
+                console.error('Error generating PDF:', error);
+            });
         });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
+    });
+</script>
 
 

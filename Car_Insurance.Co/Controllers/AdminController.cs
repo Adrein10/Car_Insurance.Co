@@ -21,16 +21,39 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Index()
         {
-            //var showcount = context.AdminDetails.Count();
-            
-            //ViewBag.Showcount = showcount;
-            return View();
+            var showcount = context.AdminDetails.Count();
+            ViewBag.Showcount = showcount;
+            var showCust = context.UserDetails.Count();
+            ViewBag.ShowCust = showCust;
+            var showvehicle = context.UserCarsDetails.Count();
+            ViewBag.ShowVehicle = showvehicle;
+            var finddata = context.UserCarsDetails
+                .Include(option => option.User)
+                .Include(option => option.Policy)
+                .Include(option => option.OrderDetails)
+                .ThenInclude(OrderDetail => OrderDetail.Plane)
+                .ToList();
+            //var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            //var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            //if(SAdminname != null || SCeoname != null)
+            //{
+            //    return View();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Login");
+            //}
+            return View(finddata);
         }
 
         public IActionResult customerDetails()
         {
+            var showCust = context.UserDetails.Count();
+            ViewBag.ShowCust = showCust;
+
             var show = context.UserDetails.ToList();
             return View(show);
+           
         }
         [HttpPost]
         public IActionResult CustomerDelete(int id)
@@ -48,7 +71,8 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult vehicalInfo()
         {
-            return View();
+            var show = context.UserCarsDetails.Include(option => option.User).ToList();
+            return View(show);
         }
 
         public IActionResult insuranceApproval()
@@ -60,12 +84,11 @@ namespace Car_Insurance.Co.Controllers
             };
             return View(approvalView);
         }
-        public IActionResult EditStatus(int id, OrderDetail updatedOrder)
+        public IActionResult EditStatus(int id)
         {
             var orderToUpdate = context.UserCarsDetails
                                        .Include(option => option.OrderDetails)
                                        .FirstOrDefault(context => context.Id == id);
-
             if (orderToUpdate != null)
             {
                 // Assuming OrderDetails is a collection, find the specific OrderDetail to update
@@ -99,6 +122,7 @@ namespace Car_Insurance.Co.Controllers
         public IActionResult login(AdminDetail admin)
         {
             var show = context.AdminDetails.Where(option => option.AdminName == admin.AdminName || option.AdminEmail == admin.AdminName && option.AdminPassword == admin.AdminPassword).FirstOrDefault();
+            var ceo = context.CeoDetails.Where(option => option.CeoEmail == admin.AdminName || option.CeoName == admin.AdminName && option.CeoPassword == admin.AdminPassword).FirstOrDefault();
           
             if(show != null)
             {
@@ -106,6 +130,13 @@ namespace Car_Insurance.Co.Controllers
                 accessor.HttpContext.Session.SetString("adminemail", show.AdminEmail);
                 accessor.HttpContext.Session.SetString("adminpass", show.AdminPassword);
                 accessor.HttpContext.Session.SetString("adminid", Convert.ToString(show.Id));
+                return RedirectToAction("Index");
+            }else if(ceo != null)
+            {
+                accessor.HttpContext.Session.SetString("ceoname", ceo.CeoName);
+                accessor.HttpContext.Session.SetString("ceoemail", ceo.CeoEmail);
+                accessor.HttpContext.Session.SetString("ceopass", ceo.CeoPassword);
+                accessor.HttpContext.Session.SetString("ceoid", Convert.ToString(ceo.Id));
                 return RedirectToAction("Index");
             }
             else
@@ -120,9 +151,9 @@ namespace Car_Insurance.Co.Controllers
             if (admin != null)
             {
                 accessor.HttpContext.Session.Clear();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
-            return RedirectToAction("notfound");
+            return RedirectToAction("Login");
         }
 
         public IActionResult RegisterAdmin()
@@ -166,6 +197,9 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult AdminInfo()
         {
+            var showcount = context.AdminDetails.Count();
+            ViewBag.Showcount = showcount;
+
             var show = context.AdminDetails.ToList();
             return View(show);
         }
@@ -218,6 +252,12 @@ namespace Car_Insurance.Co.Controllers
             
             return View();
         }
+        public IActionResult Mails()
+        {
+            
+            return View();
+        }
+
         public IActionResult Re_newInsurance()
         {
             return View();
