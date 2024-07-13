@@ -1,6 +1,9 @@
-﻿@model Car_Insurance.Co.Models.Feedback;
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor;
+@model Car_Insurance.Co.Models.Feedback;
 @{
     ViewData["Title"] = "Contact";
+    var user = accessor.HttpContext.Session.GetString("username");
+    var email = accessor.HttpContext.Session.GetString("useremail");
 }
 
 
@@ -129,12 +132,12 @@
                         <form method="post" action="#" id="contact-form">
                             <div class="form-group">
                                 <label>Enter Your Name*</label>
-                                <input type="text"  asp-for="Name" placeholder="Your Name" required />
+                                <input type="text" value="@user" asp-for="Name" placeholder="Your Name" required />
                             </div>
 
                             <div class="form-group">
                                 <label>Enter Your Email*</label>
-                                <input type="email" name="email" asp-for="Email" placeholder="Your Email" required />
+                                <input type="email" value="@email" name="email" asp-for="Email" placeholder="Your Email" required />
                             </div>
 
                             <div class="form-group">

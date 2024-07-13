@@ -34,31 +34,40 @@ namespace Car_Insurance.Co.Controllers
                 .Include(option => option.OrderDetails)
                 .ThenInclude(OrderDetail => OrderDetail.Plane)
                 .ToList();
-            //var SAdminname = accessor.HttpContext.Session.GetString("adminname");
-            //var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
-            //if(SAdminname != null || SCeoname != null)
-            //{
-            //    return View();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Login");
-            //}
-            return View(finddata);
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(finddata);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public IActionResult customerDetails()
         {
+            
             var showCust = context.UserDetails.Count();
             ViewBag.ShowCust = showCust;
 
             var show = context.UserDetails.ToList();
-            return View(show);
-           
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(show);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }           
         }
         [HttpPost]
         public IActionResult CustomerDelete(int id)
         {
+
             var user = context.UserDetails.Find(id);
             if (user == null)
             {
@@ -72,8 +81,18 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult vehicalInfo()
         {
+
             var show = context.UserCarsDetails.Include(option => option.User).ToList();
-            return View(show);
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(show);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public IActionResult insuranceApproval()
@@ -83,7 +102,16 @@ namespace Car_Insurance.Co.Controllers
                 cardetail = context.UserCarsDetails.Include(option => option.User).Include(option => option.OrderDetails).ThenInclude(OrderDetail => OrderDetail.Plane).ToList(),
                 orderstatus = new OrderDetail()
             };
-            return View(approvalView);
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(approvalView);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         public IActionResult EditStatus(int id)
         {
@@ -118,12 +146,29 @@ namespace Car_Insurance.Co.Controllers
                 .Include(option => option.Plane)
                 .Where(option => option.StatusId ==  2)
                 .ToList();
-            //var error = 123;
-            return View(find);
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(find);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         public IActionResult login()
         {
-            return View();
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpPost]
         public IActionResult login(AdminDetail admin)
@@ -169,7 +214,16 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult RegisterAdmin()
         {
-            return View();
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         [HttpPost]
 		public IActionResult RegisterAdmin(AdminDetail admin,string cpassword)
@@ -212,12 +266,30 @@ namespace Car_Insurance.Co.Controllers
             ViewBag.Showcount = showcount;
 
             var show = context.AdminDetails.ToList();
-            return View(show);
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(show);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         public IActionResult AdminInfoUpdate(int id)
         {
             var show = context.AdminDetails.Find(id);
-            return View(show);
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(show);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         [HttpPost]
         public IActionResult AdminInfoUpdate(AdminDetail admin, int id)
@@ -260,14 +332,31 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult profile()
         {
-            
-            return View();
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public IActionResult Mails()
         {
             var email = context.Feedbacks.ToList();
-            return View(email);
+            var SAdminname = accessor.HttpContext.Session.GetString("adminname");
+            var SCeoname = accessor.HttpContext.Session.GetString("ceoname");
+            if (SAdminname != null || SCeoname != null)
+            {
+                return View(email);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         public IActionResult DeleteMail(int id)
         {
@@ -281,18 +370,6 @@ namespace Car_Insurance.Co.Controllers
             context.SaveChanges();
             return RedirectToAction("Mails");
             
-        }
-        public IActionResult Re_newInsurance()
-        {
-            return View();
-        }
-        public IActionResult ExpiredInsurance()
-        {
-            return View();
-        }
-        public IActionResult policy()
-        {
-            return View();
         }
 
     }
