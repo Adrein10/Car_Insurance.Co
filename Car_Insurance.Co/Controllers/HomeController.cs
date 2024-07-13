@@ -78,10 +78,10 @@ namespace Car_Insurance.Co.Controllers
 
            context.Feedbacks.Add(feedback);
             context.SaveChanges();
+            return RedirectToAction("Contact");
 
 
-
-            return View();
+            
         }
         public IActionResult InsuranceForm()
         {

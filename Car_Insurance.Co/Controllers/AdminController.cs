@@ -21,6 +21,8 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Index()
         {
+            var showmessage = context.Feedbacks.Count();
+            ViewBag.ShowMessage = showmessage;
             var showcount = context.AdminDetails.Count();
             ViewBag.Showcount = showcount;
             var showCust = context.UserDetails.Count();
@@ -267,7 +269,6 @@ namespace Car_Insurance.Co.Controllers
 
             context.Feedbacks.Remove(mail);
             context.SaveChanges();
-
             return RedirectToAction("Mails");
             
         }
