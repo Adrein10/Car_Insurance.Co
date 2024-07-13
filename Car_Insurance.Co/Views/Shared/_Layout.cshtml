@@ -118,6 +118,11 @@
                                             <li><a asp-controller="Home" asp-action="InsuranceForm">Insurance</a></li>
                                         }
                                         <li><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+                                        @if (Sname == null)
+                                        {
+                                            
+                                        <li><a asp-controller="Admin" asp-action="Index">Dashboard </a></li>
+                                        }
                                     </ul>
                                 </div>
                             </nav>

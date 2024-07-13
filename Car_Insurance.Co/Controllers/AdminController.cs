@@ -13,7 +13,6 @@ namespace Car_Insurance.Co.Controllers
     {
         private readonly car_insuranceContext context;
         private readonly IHttpContextAccessor accessor;
-
         public AdminController(car_insuranceContext context,IHttpContextAccessor accessor)
         {
             this.context = context;
@@ -254,6 +253,7 @@ namespace Car_Insurance.Co.Controllers
             
             return View();
         }
+
         public IActionResult Mails()
         {
             var email = context.Feedbacks.ToList();
