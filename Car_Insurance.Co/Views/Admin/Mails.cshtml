@@ -1,134 +1,50 @@
-﻿@model IEnumerable<Car_Insurance.Co.Models.Feedback>;
-
-@{
-    ViewData["Title"] = "Mails";
-}
+﻿@model IEnumerable<Car_Insurance.Co.Models.Feedback>
 @{
     Layout = "_Admin";
 }
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f0f0;
-    }
+@{
+    ViewData["Title"] = "Feedback";
+}
 
-    .container {
-        max-width: 800px;
-        margin: 20px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    main {
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 10px;
-        min-height: 300px;
-        background-color: #f9f9f9;
-    }
-
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        overflow: auto;
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: 10% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        border-radius: 8px;
-    }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-</style>
 <div id="wrapper">
     <div class="content-wrapper">
         <div class="container-fluid">
+            <style>
+                .btnb:hover{
+                    color:white;
+                }
+            </style>
+                <h2>Emails</h2>
 
-
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Email Page - Admin Dashboard</title>
-                <link rel="stylesheet" href="styles.css">
-            </head>
-            <body>
-                <div class="container">
-                    <header>
-                        <h1>Email Dashboard</h1>
-                        <button id="composeBtn">Compose Email</button>
-                    </header>
-                    <main id="emailsList">
-                        <!-- Email list will be populated dynamically -->
-                    </main>
-                    <div id="emailModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <h2>Compose New Email</h2>
-                            <form id="composeForm">
-                                <label for="recipient">To:</label>
-                                <input type="email" id="recipient" required>
-                                <label for="subject">Subject:</label>
-                                <input type="text" id="subject" required>
-                                <label for="message">Message:</label>
-                                <textarea id="message" rows="5" required></textarea>
-                                <button type="submit">Send</button>
-                            </form>
+                <div id="accordion">
+                @foreach (var email in Model)
+                {
+                    var emailId = "email-" + email.MessageId;
+                    <div class="card">
+                        <div class="card-header" id="@($"heading-{emailId}")">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link btnb" type="button" data-toggle="collapse" data-target="@($"#collapse-{emailId}")" aria-expanded="true" aria-controls="@($"collapse-{emailId}")">
+                                    @email.Name (@email.Email)
+                                </button>
+                                <span class="float-right"> <a asp-controller="Admin" asp-action="DeleteMail" asp-route-id="@email.MessageId"><i class="fa-solid fa-trash " style="color:rgb(219, 37, 29);"></i></a> </span>
+                            </h5>
                         </div>
+
+                        <div id="@($"collapse-{emailId}")" class="collapse" aria-labelledby="@($"heading-{emailId}")" data-parent="#accordion">
+                            <div class="card-body">
+                                <p><strong>Subject:</strong> @email.Subject</p>
+                                <p><strong>Message:</strong> @email.Message</p>
+                            </div>
+                        </div>
+                        
                     </div>
+                }
                 </div>
-
-            </body>
-        </html>
-
-         
-
-
+           
+            <!--End Dashboard Content-->
+           
+            
         </div>
         <!-- End container-fluid-->
 
@@ -136,63 +52,3 @@
 
 
 </div><!--End wrapper-->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const composeBtn = document.getElementById('composeBtn');
-        const modal = document.getElementById('emailModal');
-        const closeModal = document.querySelector('.close');
-        const composeForm = document.getElementById('composeForm');
-        const emailsList = document.getElementById('emailsList');
-
-        // Open modal on compose button click
-        composeBtn.addEventListener('click', function () {
-            modal.style.display = 'block';
-        });
-
-        // Close modal when close button or outside modal is clicked
-        closeModal.addEventListener('click', function () {
-            modal.style.display = 'none';
-        });
-
-        window.addEventListener('click', function (event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Handle form submission (for demo purposes, just clear the form and close the modal)
-        composeForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            composeForm.reset();
-            modal.style.display = 'none';
-            // You could add logic here to simulate sending an email or updating the UI
-        });
-
-        // Simulated email data (for demo purposes)
-        const emails = [
-            { id: 1, sender: 'example@example.com', subject: 'Hello!', message: 'This is a test email.' },
-            { id: 2, sender: 'another@example.com', subject: 'Meeting Reminder', message: 'Don\'t forget the meeting tomorrow.' }
-            // Add more emails as needed
-        ];
-
-        // Function to display emails (simulated data)
-        function displayEmails() {
-            emailsList.innerHTML = ''; // Clear existing list
-
-            emails.forEach(email => {
-                const emailItem = document.createElement('div');
-                emailItem.classList.add('email-item');
-                emailItem.innerHTML = `
-                    <div><strong>From:</strong> ${email.sender}</div>
-                    <div><strong>Subject:</strong> ${email.subject}</div>
-                    <div>${email.message}</div>
-                `;
-                emailsList.appendChild(emailItem);
-            });
-        }
-
-        // Initial display of emails
-        displayEmails();
-    });
-
-</script>

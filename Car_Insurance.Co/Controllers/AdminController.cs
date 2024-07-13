@@ -254,10 +254,23 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Mails()
         {
-            
-            return View();
+            var email = context.Feedbacks.ToList();
+            return View(email);
         }
+        public IActionResult DeleteMail(int id)
+        {
+            var mail = context.Feedbacks.Find(id);
+            if (mail == null)
+            {
+                return NotFound();
+            }
 
+            context.Feedbacks.Remove(mail);
+            context.SaveChanges();
+
+            return RedirectToAction("Mails");
+            
+        }
         public IActionResult Re_newInsurance()
         {
             return View();

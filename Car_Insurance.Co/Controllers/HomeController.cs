@@ -55,12 +55,32 @@ namespace Car_Insurance.Co.Controllers
         }
         public IActionResult Contact()
         {
+
             var username = accessor.HttpContext.Session.GetString("username");
             if (username != null)
             {
                 ViewBag.sessionuser = username;
                 return View();
             }
+            
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Contact(Feedback feedback)
+        {
+            Feedback feedback1 = new Feedback()
+            {
+                Name = feedback.Name,
+                Email = feedback.Email,
+                Subject = feedback.Subject,
+                Message =feedback.Message
+            };
+
+           context.Feedbacks.Add(feedback);
+            context.SaveChanges();
+
+
+
             return View();
         }
         public IActionResult InsuranceForm()
