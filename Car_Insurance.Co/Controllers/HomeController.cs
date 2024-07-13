@@ -175,6 +175,7 @@ namespace Car_Insurance.Co.Controllers
                     StatusId = 1,
                     PlaneId = insurance.orderDetail.PlaneId
                 };
+                
                 InsurancePolicy insurancePolicy = new InsurancePolicy()
                 {
                     StartDate = insurance.insurancePolicyTable.StartDate,
@@ -187,11 +188,14 @@ namespace Car_Insurance.Co.Controllers
 
                 context.UserCarsDetails.Add(userCars);
                 context.InsurancePolicies.Add(insurancePolicy);
-
                 context.SaveChanges();
                 // for Adding orderdetail After save changes
                 context.OrderDetails.Add(orderDetail);
                 context.SaveChanges();
+                //for plan session
+                var plan = context.PlansDetails.FirstOrDefault(option => option.Id == orderDetail.PlaneId);
+                accessor.HttpContext.Session.SetString("planname", plan.Planname);
+                accessor.HttpContext.Session.SetString("planprice", Convert.ToString(plan.Price));
 
                 return RedirectToAction("BillingInfo");
             }
