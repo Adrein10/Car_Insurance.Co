@@ -187,10 +187,12 @@ namespace Car_Insurance.Co.Controllers
 
                 context.UserCarsDetails.Add(userCars);
                 context.InsurancePolicies.Add(insurancePolicy);
+
                 context.SaveChanges();
                 // for Adding orderdetail After save changes
                 context.OrderDetails.Add(orderDetail);
                 context.SaveChanges();
+
                 return RedirectToAction("BillingInfo");
             }
             else
