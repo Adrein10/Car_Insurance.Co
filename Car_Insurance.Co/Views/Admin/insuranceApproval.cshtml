@@ -38,13 +38,13 @@
                                     foreach (var orderDetail in carDetail.OrderDetails)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(modelItem => carDetail.User.Username)</td>
-                                            <td>@Html.DisplayFor(modelItem => carDetail.Carname)</td>
-                                            <td>@Html.DisplayFor(modelItem => carDetail.Carmodel)</td>
-                                            <td>@Html.DisplayFor(modelItem => carDetail.Carnumber)</td>
-                                            <td>@Html.DisplayFor(modelItem => carDetail.Enginenumber)</td>
-                                            <td>@Html.DisplayFor(modelItem => carDetail.Carrcc)</td>
-                                            <td>@Html.DisplayFor(modelItem => orderDetail.Plane.Planname)</td>
+                                                    <td>@(orderDetail.Car?.User?.Username ?? "N/A")</td>
+                                                    <td>@(orderDetail.Car?.Carname ?? "N/A")</td>
+                                                    <td>@(orderDetail.Car?.Carmodel.ToString() ?? "N/A")</td>
+                                                    <td>@(orderDetail.Car?.Carnumber ?? "N/A")</td>
+                                                    <td>@(orderDetail.Car?.Enginenumber ?? "N/A")</td>
+                                                    <td>@(orderDetail.Car?.Carrcc.ToString() ?? "N/A")</td>
+                                                    <td>@(orderDetail.Plane?.Planname ?? "N/A")</td>
                                             <td>
                                                 @if (orderDetail.StatusId == 1)
                                                 {
