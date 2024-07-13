@@ -114,7 +114,13 @@ namespace Car_Insurance.Co.Controllers
 
         public IActionResult insurances()
         {
-            return View();
+            var find = context.OrderDetails
+                .Include(option => option.Car)
+                .Include(option => option.Plane)
+                .Where(option => option.StatusId ==  2)
+                .ToList();
+            //var error = 123;
+            return View(find);
         }
         public IActionResult login()
         {
@@ -123,8 +129,11 @@ namespace Car_Insurance.Co.Controllers
         [HttpPost]
         public IActionResult login(AdminDetail admin)
         {
-            var show = context.AdminDetails.Where(option => option.AdminName == admin.AdminName || option.AdminEmail == admin.AdminName && option.AdminPassword == admin.AdminPassword).FirstOrDefault();
-            var ceo = context.CeoDetails.Where(option => option.CeoEmail == admin.AdminName || option.CeoName == admin.AdminName && option.CeoPassword == admin.AdminPassword).FirstOrDefault();
+            var show = context.AdminDetails
+                .Where(option => option.AdminName == admin.AdminName || option.AdminEmail == admin.AdminName && option.AdminPassword == admin.AdminPassword).FirstOrDefault();
+
+            var ceo = context.CeoDetails
+                .Where(option => option.CeoEmail == admin.AdminName || option.CeoName == admin.AdminName && option.CeoPassword == admin.AdminPassword).FirstOrDefault();
           
             if(show != null)
             {
@@ -150,7 +159,8 @@ namespace Car_Insurance.Co.Controllers
         public IActionResult logout()
         {
             var admin = accessor.HttpContext.Session.GetString("adminname");
-            if (admin != null)
+            var ceo = accessor.HttpContext.Session.GetString("ceoname");
+            if (admin != null || ceo != null)
             {
                 accessor.HttpContext.Session.Clear();
                 return RedirectToAction("Login");

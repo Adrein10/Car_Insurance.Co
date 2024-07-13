@@ -1,7 +1,8 @@
-﻿@model Car_Insurance.Co.Models.InsuranceApprovalView;
+﻿@model IEnumerable<Car_Insurance.Co.Models.OrderDetail>;
 @{
     Layout = "_Admin";
 }
+
 <div class="content-wrapper">
     <div class="container-fluid">
 
@@ -11,63 +12,86 @@
 
 
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="my-1">Insurance Requests</h5>
-                                </div>
-                                <div class="table-responsive">
-                                    <table id="insuranceTable" class="table align-items-center table-flush table-borderless">
-                                        <thead>
+
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="my-1">Insurance Requests</h5>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="insuranceTable" class="table align-items-center table-flush table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Car Name</th>
+                                            <th>Car Model</th>
+                                            <th>Car Color</th>
+                                            <th>City</th>
+                                            <th>Purpose</th>
+                                            <th>Plane Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var order in Model)
+                                        {
                                             <tr>
-                                                <th>Customer Name</th>
-                                                <th>Car Name</th>
-                                                <th>Car Model</th>
-                                                <th>Car Number</th>
-                                                <th>Engine Number</th>
-                                                <th>CC</th>
-                                                <th>Plan</th>
-                                                <th>Status</th>
+                                                <td>@(order.Car?.Carname ?? "N/A")</td>
+                                                <td>@(order.Car?.Carmodel.ToString() ?? "N/A")</td>
+                                                <td>@(order.Car?.Carcolor ?? "N/A")</td>
+                                                <td>@(order.Car?.City ?? "N/A")</td>
+                                                <td>@(order.Car?.Purpose ?? "N/A")</td>
+                                                <td>@(order.Plane?.Planname ?? "N/A")</td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                         @*    @foreach (var carDetail in Model.cardetail)
-                                            {
-                                                foreach (var orderDetail in carDetail.OrderDetails)
-                                                {
-                                                    <tr>
-                                                        <td>@Html.DisplayFor(modelItem => carDetail.User.Username)</td>
-                                                        <td>@Html.DisplayFor(modelItem => carDetail.Carname)</td>
-                                                        <td>@Html.DisplayFor(modelItem => carDetail.Carmodel)</td>
-                                                        <td>@Html.DisplayFor(modelItem => carDetail.Carnumber)</td>
-                                                        <td>@Html.DisplayFor(modelItem => carDetail.Enginenumber)</td>
-                                                        <td>@Html.DisplayFor(modelItem => carDetail.Carrcc)</td>
-                                                        <td>@Html.DisplayFor(modelItem => orderDetail.Plane.Planname)</td>
-                                                        <td>
-                                                            @if (orderDetail.StatusId == 1)
-                                                            {
-                                                                <a asp-controller="Admin" asp-action="EditStatus" asp-route-id="@carDetail.Id" class="status-select">
-                                                                    <span class="badge badge-warning status px-4 py-2">Pending</span>
-                                                                </a>
-                                                            }
-                                                            else
-                                                            {
-                                                                <span class="badge badge-success px-4 py-2">Approved</span>
-                                                            }
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            } *@
-                                            <!-- Add more <tr> for each insurance request -->
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        }
+                                        <!-- Add more <tr> for each insurance request -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#insuranceTable').on('click', '.status', function (e) {
+            e.preventDefault(); // Prevent default behavior of <a> tag
+            var statusBadge = $(this);
+
+            if (statusBadge.text().trim() === 'Pending') {
+                if (confirm('Are you sure you want to approve this insurance request?')) {
+                    // Simulate an AJAX call to update the status (replace with actual AJAX if needed)
+                    setTimeout(function () {
+                        // Change status to Approved
+                        statusBadge.removeClass('badge-warning').addClass('badge-success').text('Approved');
+                    }, 500); // Replace with actual AJAX call
+
+                    // Optionally, update the status on the server using AJAX
+
+                    $.ajax({
+                        url: statusBadge.closest('a').attr('href'),
+                        method: 'POST',
+                        success: function () {
+                            // On success, update UI
+                            statusBadge.removeClass('badge-warning').addClass('badge-success').text('Approved');
+                        },
+                        error: function () {
+                            alert('Failed to update status. Please try again.');
+                        }
+                    });
+                }
+            }
+        });
+
+        // Handle cancel button click
+        $('#insuranceTable').on('click', '.cancel-btn', function () {
+            // Handle cancel button click logic here
+            // This is where you can implement cancel logic
+            console.log('Cancel button clicked');
+        });
+    });
+</script>
