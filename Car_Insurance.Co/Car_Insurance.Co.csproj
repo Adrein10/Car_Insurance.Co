@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Carsore-Mail-Files\**" />
+    <Content Remove="Carsore-Mail-Files\**" />
+    <EmbeddedResource Remove="Carsore-Mail-Files\**" />
+    <None Remove="Carsore-Mail-Files\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\Admin\css\animate.css" />
     <Content Remove="wwwroot\Admin\css\app-style.css" />
     <Content Remove="wwwroot\Admin\css\bootstrap.css" />
@@ -600,6 +607,11 @@
     <Content Remove="wwwroot\Admin\plugins\simplebar\js\simplebar.js" />
     <Content Remove="wwwroot\Admin\plugins\sparkline-charts\jquery.sparkline.min.js" />
     <Content Remove="wwwroot\Admin\plugins\sparkline-charts\sparkline-chart-script.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Database\car_insurance.bacpac" />
+    <Content Include="Database\ERD.PNG" />
   </ItemGroup>
 
   <ItemGroup>
