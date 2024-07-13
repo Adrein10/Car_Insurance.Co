@@ -16,6 +16,8 @@
     var carNumber = accessor.HttpContext.Session.GetString("carNumber");
     var carName = accessor.HttpContext.Session.GetString("carName");
     var startdate = accessor.HttpContext.Session.GetString("policyStart");
+    var planname = accessor.HttpContext.Session.GetString("planname");
+    var planprice = accessor.HttpContext.Session.GetString("planprice");
 }
 
 
@@ -87,13 +89,7 @@
         }
     </style>
 
-<div class="download-section">
-    <p>
-        <a asp-controller="Home" asp-action="ThankyouForm" id="downloadLink">
-            <i class="fa fa-download"></i> Download Insurance Policy PDF
-        </a>
-    </p>
-</div>
+
     <div id="contentToConvert" class="container1">
        
         <h2>Insurance Policy</h2>
@@ -107,11 +103,8 @@
             <p><strong>Expiry Date:</strong>One Year</p>
         </div>
         <div class="coverage-details">
-            <p><strong>Coverage Details:</strong></p>
-            <p><strong>Third Party Liability:</strong> [Coverage details]</p>
-            <p><strong>Comprehensive Coverage:</strong> [Coverage details]</p>
-            <p><strong>Amount paid:</strong>Amount</p>
-            <p><strong>Deductible:</strong> [If applicable]</p>
+            <p><strong>Insurance Plan :</strong> @planname</p>
+            <p><strong>Amount paid:</strong> @planprice</p>
         </div>
         <div class="terms-conditions">
             <p><strong>Terms and Conditions:</strong></p>
@@ -121,18 +114,25 @@
         </div>
         <div class="certification">
             <p><strong>Certification:</strong></p>
-            <p>This is to certify that the above-mentioned vehicle is insured with [Your Company Name] as per the terms and conditions mentioned herein.</p>
+            <p>This is to certify that the above-mentioned vehicle is insured with Carsore Company as per the terms and conditions mentioned herein.</p>
         </div>
         <div class="signature">
-            <p><strong>Authorized Signature:</strong> [Signature]</p>
+            <p><strong>Authorized Signature:</strong> Ceo</p>
         </div>
     </div>
-<!-- Content to convert into PDF -->
+<div class="download-section d-flex justify-content-center">
+    <p>
+        <a asp-controller="Home" asp-action="ThankyouForm" id="downloadLink">
+            <i class="fa fa-download"></i> Download Insurance Policy PDF
+        </a>
+    </p>
+</div>
+@* <!-- Content to convert into PDF -->
 <div id="contentToConvert">
     <h1>Insurance Policy</h1>
     <p>This is your insurance policy details...</p>
 </div>
-
+ *@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
